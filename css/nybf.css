@@ -1,0 +1,212 @@
+/* Special grid styles
+-------------------------------------------------- */
+/*
+e5ebab : beigeish color;
+1bbead : greenish color;
+background: black;
+*/
+
+
+body {
+  background-color: black;
+  font: Verdana;
+  font-family: sans-serif;
+  color: #1bbead ;
+}
+
+hr {
+  color: #1bbead;
+
+}
+
+
+.sponsors{
+  padding: 20px;
+/* IE10 Consumer Preview */ 
+background-image: -ms-linear-gradient(top, #000000 0%, #1BBEAD 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-linear-gradient(top, #000000 0%, #1BBEAD 100%);
+
+/* Opera */ 
+background-image: -o-linear-gradient(top, #000000 0%, #1BBEAD 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #000000), color-stop(1, #1BBEAD));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-linear-gradient(top, #000000 0%, #1BBEAD 100%);
+
+/* W3C Markup, IE10 Release Preview */ 
+background-image: linear-gradient(to bottom, #000000 0%, #1BBEAD 100%);
+
+}
+
+.navbar_top {
+  padding-top: 10px;
+
+}
+
+.navelem{
+  text-align: center;
+  color: #e5ebab;
+  font-size: 1.2em;
+
+}
+
+.videowrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+
+.videowrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+a{
+  text-decoration: none;
+    color: #1bbead;
+
+}
+
+.navelem a{
+  text-decoration: none;
+  text-align: center;
+  color: #e5ebab;
+  font-size: 1.2em;
+}
+
+.navelem.active{
+  color: #1bbead;
+  text-align: center;
+  font-size: 1.6em;
+}
+
+h1 {
+  color: #e5ebab;
+  font-size: 2.4em;
+}
+
+sup {
+  color: #e5ebab;
+  font-size: .8em;
+}
+
+h2{
+  color: #e5ebab;
+  font-size: 2.2em;
+
+}
+
+h3{
+  color: #1bbead;
+  font-size: 1.1em;
+  padding-bottom: 2px;
+  margin: 2px;
+  line-height: 1.1em;
+
+}
+
+h4 {
+  color: #e5ebab;
+  font-size: 1.0em;
+  margin: 2px;
+
+}
+
+h5{
+  margin: 2px;
+
+}
+
+
+.sponsors .row-fluid{
+  margin-bottom: 40px;
+
+}
+
+.sponsors .row-fluid .span4{
+  text-align: right;
+
+}
+.sponsors .row-fluid .span8{
+  text-align: center;
+
+}
+
+.storeitemheader {
+  margin-top: 40px;
+
+}
+
+.storeitem div.itemimg{
+  height: 400px;
+
+}
+.storeitem div.leftimg{
+  text-align: left;
+
+}
+.storeitem div.rightimg{
+  text-align: right;
+}
+.storeitem div img{
+  height: 100%;
+  width: auto%;
+}
+
+
+
+.framedcolumn {
+  border: 1px solid #e5ebab;
+  padding: 5px;
+
+}
+
+.yearselect .selected {
+  font-size: 1.2em;
+
+}
+
+.dayselect .selected {
+  font-size: 1.2em;
+
+}
+
+
+
+.show-grid {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.show-grid [class*="span"] {
+  background-color: #eee;
+  text-align: center;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  min-height: 40px;
+  line-height: 40px;
+}
+.show-grid [class*="span"]:hover {
+  background-color: #ddd;
+}
+.show-grid .show-grid {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.show-grid .show-grid [class*="span"] {
+  margin-top: 5px;
+}
+.show-grid [class*="span"] [class*="span"] {
+  background-color: #ccc;
+}
+.show-grid [class*="span"] [class*="span"] [class*="span"] {
+  background-color: #999;
+}

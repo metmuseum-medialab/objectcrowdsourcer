@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>CrowdTagger - Smile Version</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jcanvas.min.js"></script>
+
+<script language='javascript'>
+
+
+$( document ).ready(function() {
+  // Handler for .ready() called.
+  $('.emailentry').keyup(function(evt){
+  	console.log("keyup");
+  	console.log(evt);
+  });
+
+
+  // svg setup
+
+  var offline = false;
+
+  var testImage = "img/testImage.jpg"
+
+// /	theSvg.image(100, 50, 200, 200, testImage); 
+  var currentObject = false;
+	$("canvas").drawRect({
+		fillStyle: '#fff',
+		fromCenter: false,
+		x:0, y:0,
+		height: 600,
+		width: 800
+	});
+
+
+  $(".clickfornext").click(function(){
+  	console.log("request next");
+  	$.ajax({
+  		url: "/?action=nextObject",
+  		success : function(data, status){
+  			console.log(data);
+  			currentObject = data;
+  			var theimage= data.image;
+  			if(offline){
+  				theimage = testImage;
+  			}
+  			//$(".imagefortagging").html("<img src='"+theimage+"' class='imgtoclick' />");
+  			var imgObj = new Image();
+  			$("canvas").clearCanvas();
+  			imgObj.onload = function(){
+  				var result = ScaleImage(imgObj.width, imgObj.height, 800, 600, true);
+  				console.log(result);
+  				 $("canvas").drawImage({
+  				 	source: imgObj, 
+  				 	fromCenter: false,
+  				 	x: 0, y : 0,
+  				 	width: result.width, 
+  				 	height: result.height
+  				 }); // resizes image to a target size of 300x200 using letterbox mode
+  			}
+			imgObj.src= theimage;
+
+  			$("canvas").click(function(evt){
+  				console.log("imageclick");
+  				console.log(evt);
+  				var x = evt.offsetX;
+  				var y = evt.offsetY;
+
+  				faceTapped(x,y);
+
+  				console.log("clicked at  " + x + " , " + y);
+  			});
+
+  		},
+
+  		error : function(jqXHR, status, message){
+  			console.log("error ");
+  			console.log(status);
+  			console.log(message);
+  		}
+  	})
+  });
+
+
+  function faceTapped(x,y){
+  	$("canvas").drawArc({strokeStyle: "#f00",
+  						strokeWidth: 1,
+  						x: x, y: y,
+  						radius: 10})
+  }
+
+
+  function ScaleImage(srcwidth, srcheight, targetwidth, targetheight, fLetterBox) {
+
+    var result = { width: 0, height: 0, fScaleToTargetWidth: true };
+
+    if ((srcwidth <= 0) || (srcheight <= 0) || (targetwidth <= 0) || (targetheight <= 0)) {
+        return result;
+    }
+
+    // scale to the target width
+    var scaleX1 = targetwidth;
+    var scaleY1 = (srcheight * targetwidth) / srcwidth;
+
+    // scale to the target height
+    var scaleX2 = (srcwidth * targetheight) / srcheight;
+    var scaleY2 = targetheight;
+
+    // now figure out which one we should use
+    var fScaleOnWidth = (scaleX2 > targetwidth);
+    if (fScaleOnWidth) {
+        fScaleOnWidth = fLetterBox;
+    }
+    else {
+       fScaleOnWidth = !fLetterBox;
+    }
+
+    if (fScaleOnWidth) {
+        result.width = Math.floor(scaleX1);
+        result.height = Math.floor(scaleY1);
+        result.fScaleToTargetWidth = true;
+    }
+    else {
+        result.width = Math.floor(scaleX2);
+        result.height = Math.floor(scaleY2);
+        result.fScaleToTargetWidth = false;
+    }
+    result.targetleft = Math.floor((targetwidth - result.width) / 2);
+    result.targettop = Math.floor((targetheight - result.height) / 2);
+
+    return result;
+  }
+
+});
+
+</script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row-fluid-banner">
+			<div class="span6" align="left"><h1>CrowdTagger - Smiley Version</h1></div>
+			<div class="span6" align="right">Enter Email to get started: <BR/><input type='text' class="emailentry" size=20 /></div>
+		</div>
+		<div class="row-fluid-banner">
+
+			<div class="span12" ><span class="clickfornext">Next Object</span></div>
+		</div>
+
+		<div class="row-fluid-banner" >
+			<div class="span8" ><canvas id="svgfortagging" width="800" height="600"></div>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

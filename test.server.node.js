@@ -136,7 +136,7 @@ var design = {
   	"views" : { 
   		"objects_ready_for_face_tag" : {
   			"map" : "function(doc){ "+
-  			" if(doc.assigned == false && doc.tags.faces.length < 2){ " +
+  			" if(doc.assigned == false && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2){ " +
   			" 	ready = true; " +
   			" } else{ " + 
   			"	ready = false " +
@@ -287,6 +287,12 @@ function get_unassigned_object(){
 			}
 		}); 
 	});
+}
+
+
+function add_tag(){
+	
+	
 }
 
 // update object to say it's currently assigned for tagging (can we do this atomically with getting the objec??)
