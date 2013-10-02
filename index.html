@@ -56,8 +56,6 @@ $( document ).ready(function() {
   	}
   });
 
-first = false;
-
   function loadObject(data){
  	console.log(data);
 	currentObject = data;
@@ -70,10 +68,8 @@ first = false;
 	paper.clear();
 	imgObj.onload = function(){
 		var result = ScaleImage(imgObj.width, imgObj.height, 800, 600, true);
-		console.log(result);
 		var image = paper.image(theimage, 0,0, result.width, result.height);
 		image.click(function(evt){
-			console.log(evt);
 			var x = evt.offsetX;
 			var y = evt.offsetY;
 			faceTapped(x,y);
@@ -92,8 +88,7 @@ first = false;
 	  		url: "/?action=nextObject",
 	  		success : function(data, status){
 	  			cachedObject = data;
-	  			console.log("got object to cache");
-	  			
+
 	  		},
 
 	  		error : function(jqXHR, status, message){
@@ -118,36 +113,37 @@ first = false;
 		});
 		var newTX=0,newTY=0,fDx=0,fDy=0,tAddX,tAddY,reInitialize=false;
 
-		circle.drag(function(dx,dy, x,y){
-		tAddX=dx-fDx;
-		tAddY=dy-fDy;
-		fDx=dx;
-		fDy=dy;
-		if(reInitialize)
-		{
-			tAddX=0;
-			fDx=0;
-			tAddY=0;
-			fDy=0;
-			reInitialize=false;
-		}
-		else
-		{
-			newTX+=tAddX,newTY+=tAddY;
-			circle.attr({transform: "t"+newTX+","+newTY});
-			outerCircle.attr({transform: "t"+newTX+","+newTY});
-		}
-	 },
-	 function(){
+		circle.drag(
+			function(dx,dy, x,y){
+				tAddX=dx-fDx;
+				tAddY=dy-fDy;
+				fDx=dx;
+				fDy=dy;
+				if(reInitialize)
+				{
+					tAddX=0;
+					fDx=0;
+					tAddY=0;
+					fDy=0;
+					reInitialize=false;
+				}
+				else
+				{
+					newTX+=tAddX,newTY+=tAddY;
+					circle.attr({transform: "t"+newTX+","+newTY});
+					outerCircle.attr({transform: "t"+newTX+","+newTY});
+				}
+			 },
+			 function(){
 
-	 }, 
-	 function (evt) {
-		reInitialize=true;
-		console.log(evt);
-		var newX = evt.offsetX;
-		var newY = evt.offsetY;
-		// update position in db, etc
-	  });
+			 }, 
+			 function (evt) {
+				reInitialize=true;
+				console.log(evt);
+				var newX = evt.offsetX;
+				var newY = evt.offsetY;
+				// update position in db, etc
+			  });
 			
 
   }
