@@ -28,47 +28,81 @@ $( document ).ready(function() {
   // Creates canvas 320 × 200 at 10, 50
   var paper = Raphael("elemfortagging", 400, 600);
 
-
+  var cachedObject = false;
+  var cachedImage = false; 
 
   $(".clickfornext").click(function(){
-  	console.log("request next");
-  	$.ajax({
-  		url: "/?action=nextObject",
-  		success : function(data, status){
-  			console.log(data);
-  			currentObject = data;
-  			var theimage= data.image;
-  			if(offline){
-  				theimage = testImage;
-  			}
-  			var imgObj = new Image();
-  			console.log("clearing");
-  			imgObj.onload = function(){
-  				var result = ScaleImage(imgObj.width, imgObj.height, 800, 600, true);
-  				console.log(result);
- 				var image = paper.image(theimage, 0,0, result.width, result.height);
- 				image.click(function(evt){
- 					console.log(evt);
- 					var x = evt.offsetX;
- 					var y = evt.offsetY;
- 					faceTapped(x,y);
+  	if(cachedObject){
+  		loadObject(cachedObject);
+  		cachedObject = false;
+  		getObjectToCache();
+  	}else{
 
- 				});
-  			}
-			imgObj.src= theimage;
+	  	console.log("request next");
 
+	  	$.ajax({
+	  		url: "/?action=nextObject",
+	  		success : function(data, status){
+	  			loadObject(data);
+		  		getObjectToCache();
+	  		},
 
-  		},
-
-  		error : function(jqXHR, status, message){
-  			console.log("error ");
-  			console.log(status);
-  			console.log(message);
-  		}
-  	})
+	  		error : function(jqXHR, status, message){
+	  			console.log("error ");
+	  			console.log(status);
+	  			console.log(message);
+	  		}
+	  	});
+  	}
   });
 
 first = false;
+
+  function loadObject(data){
+ 	console.log(data);
+	currentObject = data;
+	var theimage= data.image;
+	if(offline){
+		theimage = testImage;
+	}
+	var imgObj = new Image();
+	console.log("clearing");
+	paper.clear();
+	imgObj.onload = function(){
+		var result = ScaleImage(imgObj.width, imgObj.height, 800, 600, true);
+		console.log(result);
+		var image = paper.image(theimage, 0,0, result.width, result.height);
+		image.click(function(evt){
+			console.log(evt);
+			var x = evt.offsetX;
+			var y = evt.offsetY;
+			faceTapped(x,y);
+
+		});
+	}
+	imgObj.src= theimage; 	
+
+
+
+  }
+
+
+  function getObjectToCache(){
+  	$.ajax({
+	  		url: "/?action=nextObject",
+	  		success : function(data, status){
+	  			cachedObject = data;
+	  			console.log("got object to cache");
+	  			
+	  		},
+
+	  		error : function(jqXHR, status, message){
+	  			console.log("error ");
+	  			console.log(status);
+	  			console.log(message);
+	  		}
+	  	});
+  }
 
   function faceTapped(x,y){
   		var outerCircle = paper.circle(x,y,11);
