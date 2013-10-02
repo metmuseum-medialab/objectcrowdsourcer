@@ -48,6 +48,7 @@ $( document ).ready(function() {
   			}
   			//$(".imagefortagging").html("<img src='"+theimage+"' class='imgtoclick' />");
   			var imgObj = new Image();
+  			console.log("clearing");
   			$("canvas").clearCanvas();
   			imgObj.onload = function(){
   				var result = ScaleImage(imgObj.width, imgObj.height, 800, 600, true);
@@ -83,12 +84,20 @@ $( document ).ready(function() {
   	})
   });
 
+first = false;
 
   function faceTapped(x,y){
   	$("canvas").drawArc({strokeStyle: "#f00",
   						strokeWidth: 1,
   						x: x, y: y,
-  						radius: 10})
+  						radius: 10,
+  						layer :true,
+  						
+  						click: function(layer){
+  							//console.log("layer clicked");
+  						}
+  						
+  					});
   }
 
 
