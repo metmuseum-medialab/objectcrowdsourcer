@@ -5,7 +5,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="js/jcanvas.min.js"></script>
+<script type="text/javascript" src="js/raphael-min.js"></script>
 
 <script language='javascript'>
 
@@ -24,15 +24,10 @@ $( document ).ready(function() {
 
   var testImage = "img/testImage.jpg"
 
-// /	theSvg.image(100, 50, 200, 200, testImage); 
-  var currentObject = false;
-	$("canvas").drawRect({
-		fillStyle: '#fff',
-		fromCenter: false,
-		x:0, y:0,
-		height: 600,
-		width: 800
-	});
+
+  // Creates canvas 320 × 200 at 10, 50
+  var paper = Raphael("elemfortagging", 400, 600);
+
 
 
   $(".clickfornext").click(function(){
@@ -46,33 +41,22 @@ $( document ).ready(function() {
   			if(offline){
   				theimage = testImage;
   			}
-  			//$(".imagefortagging").html("<img src='"+theimage+"' class='imgtoclick' />");
   			var imgObj = new Image();
   			console.log("clearing");
-  			$("canvas").clearCanvas();
   			imgObj.onload = function(){
   				var result = ScaleImage(imgObj.width, imgObj.height, 800, 600, true);
   				console.log(result);
-  				 $("canvas").drawImage({
-  				 	source: imgObj, 
-  				 	fromCenter: false,
-  				 	x: 0, y : 0,
-  				 	width: result.width, 
-  				 	height: result.height
-  				 }); // resizes image to a target size of 300x200 using letterbox mode
+ 				var image = paper.image(theimage, 0,0, result.width, result.height);
+ 				image.click(function(evt){
+ 					console.log(evt);
+ 					var x = evt.offsetX;
+ 					var y = evt.offsetY;
+ 					faceTapped(x,y);
+
+ 				});
   			}
 			imgObj.src= theimage;
 
-  			$("canvas").click(function(evt){
-  				console.log("imageclick");
-  				console.log(evt);
-  				var x = evt.offsetX;
-  				var y = evt.offsetY;
-
-  				faceTapped(x,y);
-
-  				console.log("clicked at  " + x + " , " + y);
-  			});
 
   		},
 
@@ -87,17 +71,51 @@ $( document ).ready(function() {
 first = false;
 
   function faceTapped(x,y){
-  	$("canvas").drawArc({strokeStyle: "#f00",
-  						strokeWidth: 1,
-  						x: x, y: y,
-  						radius: 10,
-  						layer :true,
-  						
-  						click: function(layer){
-  							//console.log("layer clicked");
-  						}
-  						
-  					});
+  		var outerCircle = paper.circle(x,y,11);
+  		outerCircle.attr("stroke","#fff");
+
+		var circle = paper.circle(x,y,10);
+		circle.attr("stroke","#f00");
+		circle.attr("stroke-width",1);
+		circle.attr("fill", "#5f5");
+		circle.attr("fill-opacity",".2");
+		circle.click(function(evt2){
+			console.log("circleclicked");
+		});
+		var newTX=0,newTY=0,fDx=0,fDy=0,tAddX,tAddY,reInitialize=false;
+
+		circle.drag(function(dx,dy, x,y){
+		tAddX=dx-fDx;
+		tAddY=dy-fDy;
+		fDx=dx;
+		fDy=dy;
+		if(reInitialize)
+		{
+			tAddX=0;
+			fDx=0;
+			tAddY=0;
+			fDy=0;
+			reInitialize=false;
+		}
+		else
+		{
+			newTX+=tAddX,newTY+=tAddY;
+			circle.attr({transform: "t"+newTX+","+newTY});
+			outerCircle.attr({transform: "t"+newTX+","+newTY});
+		}
+	 },
+	 function(){
+
+	 }, 
+	 function (evt) {
+		reInitialize=true;
+		console.log(evt);
+		var newX = evt.offsetX;
+		var newY = evt.offsetY;
+		// update position in db, etc
+	  });
+			
+
   }
 
 
@@ -159,7 +177,12 @@ first = false;
 		</div>
 
 		<div class="row-fluid-banner" >
-			<div class="span8" ><canvas id="svgfortagging" width="800" height="600"></div>
+			<div class="span7" id="elemfortagging"  width="400" height="600" style="border:1px solid black;"></div>
+			<div class="span4" id="facemetadata">
+				<h3>faces:</h3>
+				<div class="facetags">
+				</div>
+			</div>
 		</div>
 
 	</div>
