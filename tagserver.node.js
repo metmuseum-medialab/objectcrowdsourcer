@@ -87,9 +87,9 @@ function parseRequest(req, res){
   var parsed = urlparser.parse(req.url, true)
   var query = urlparser.parse(req.url, true).query;
   console.log('~~~~~~~~~~~~~~~~~');
-  console.log(parsed);
+ // console.log(parsed);
   console.log('~~~~~~~~~~~~~~~~~');
-  console.log(query);
+  //console.log(query);
   console.log('~~~~~~~~~~~~~~~~~');
 
   if(!query.action){
@@ -97,6 +97,8 @@ function parseRequest(req, res){
   }else if (query.action == "nextObject"){
     nextObject(query, res);
 
+  }else if (query.action == "updateObjectFaces"){
+    updateObjectFaces(query, req, res);
   }else{
    res.writeHead(200, {'Content-Type': 'text/html'});
    res.end("<html><body><pre>not sure what to do</pre></body></html>");
@@ -135,7 +137,7 @@ function sendFile(path, query, res){
       }else{
         res.writeHead(200, {'Content-Type': +contentType});
         console.log("writing file " + path);
-        console.log(data);
+     //   console.log(data);
         //dataCache[path] = data;
         res.end(data);
       }
@@ -180,5 +182,29 @@ function get_unassigned_object(res){
       }
     ); 
   });
+}
+
+function updateObjectFaces(query, request, response){
+  console.log("in updateObjectFaces");
+  console.log(query);
+  var faces = JSON.parse(query.faces);
+  console.log(faces);
+  faces.forEach(function(face){
+    console.log("face");
+    console.log(face);
+  });
+  db.atomic("objecttagger", "in-place-faces", query.objectId, 
+    {faces : faces },
+    function(e,b) { 
+      if(e){
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~error");
+        console.log(e);
+      }else{
+        console.log("ok");
+      }
+    }
+
+    );
+
 }
 

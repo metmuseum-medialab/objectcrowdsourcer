@@ -289,6 +289,13 @@ function get_unassigned_object(){
 	});
 }
 
+function unsetAllTags(){
+	db.view("objecttagger", "unassign_tagged_objects", {} , 
+	function(err, body){
+		console.log("maybe untagged objects");
+	}
+}
+
 
 function add_tag(){
 	

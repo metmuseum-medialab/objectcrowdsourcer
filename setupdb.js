@@ -17,6 +17,17 @@ var design = {
         "  doc[field] = value; "+
         "  return [doc, message]; "+
       " }",
+      "in-place-faces" : "function(doc, req) { "+
+        " var body = JSON.parse(req.body); " +
+        "  var faces = body.faces; "+
+        "  var message = 'setting faces'; "+
+        " if(!doc.tags) { " +
+        "   doc.tags = {} " +
+        " } " + 
+        "  doc.tags.faces = faces; "+
+        "  return [doc, message]; "+
+      " }",
+
 
       "add-tag" : "function(doc, req) { " + 
         " var body = JSON.parse(req.body); " +
@@ -34,7 +45,19 @@ var design = {
         " } " +
         " emit(ready, doc); " + 
         "} " 
+      },
+      "assigned_objects" : {
+        "map" : "function(doc){ "+
+//        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
+        " if(doc.assigned_for_tagging){ " +
+        "   ready = true; " +
+        " } else{ " + 
+        "   ready = false " +
+        " } " +
+        " emit(ready, doc); " + 
+        "} " 
       }
+
 
     }
 
@@ -84,5 +107,7 @@ db.get("_design/objecttagger", function(err, body){
     });
   }
 });
+
+
 
 
