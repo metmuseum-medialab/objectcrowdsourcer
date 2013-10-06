@@ -170,7 +170,7 @@ $( document ).ready(function() {
 	console.log("clearing");
 	paper.clear();
 	imgObj.onload = function(){
-		var result = ScaleImage(imgObj.width, imgObj.height, 800, 600, true);
+		var result = ScaleImage(imgObj.width, imgObj.height, 400, 600, true);
 		var image = paper.image(theimage, 0,0, result.width, result.height);
 		currentObjectWidth = result.width;
 		currentObjectHeight = result.height;
@@ -362,7 +362,7 @@ $( document ).ready(function() {
 		</div>
 
 		<div class="row-fluid-banner" >
-			<div class="span7" id="elemfortagging"  width="400" height="600" style="border:1px solid black;"></div>
+			<div class="span6" id="elemfortagging"  width="400" height="600" style="border:1px solid black;"></div>
 			<div class="span4" id="facemetadata">
 			<div><h3 class="clickfornext"></h3></div>
 				<h3>faces:</h3>

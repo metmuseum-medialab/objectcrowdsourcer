@@ -62,7 +62,7 @@ var metRunner = metRunner.getMetRunner({
 									endpage : 6500,
                   useCache : false,
                   withImages : true,
-                  query : 'portrait',
+                  query : 'merry',
 									objectCallback: objectCallback, 
 									filterCallback : filterCallback,
 									finishedCallback : finishedCallback});

@@ -25,6 +25,7 @@ var design = {
         "   doc.tags = {} " +
         " } " + 
         "  doc.tags.faces = faces; "+
+        " doc.assigned_for_tagging = false; " + 
         "  return [doc, message]; "+
       " }",
 
@@ -33,33 +34,53 @@ var design = {
         " var body = JSON.parse(req.body); " +
         "   return [ null, 'ok'] ; " + 
     " } "
+  },
+  "views" : { 
+    "objects_ready_for_face_tag" : {
+      "map" : "function(doc){ "+
+//        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
+      " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || !doc.tags.faces)){ " +
+      "   ready = true; " +
+      " } else{ " + 
+      "   ready = false " +
+      " } " +
+      " emit(ready, doc); " + 
+      "} " 
     },
-    "views" : { 
-      "objects_ready_for_face_tag" : {
-        "map" : "function(doc){ "+
+    "assigned_objects" : {
+      "map" : "function(doc){ "+
 //        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
-        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || !doc.tags.faces)){ " +
-        "   ready = true; " +
-        " } else{ " + 
-        "   ready = false " +
-        " } " +
-        " emit(ready, doc); " + 
-        "} " 
-      },
-      "assigned_objects" : {
-        "map" : "function(doc){ "+
-//        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
-        " if(doc.assigned_for_tagging){ " +
-        "   ready = true; " +
-        " } else{ " + 
-        "   ready = false " +
-        " } " +
-        " emit(ready, doc); " + 
-        "} " 
-      }
+      " if(doc.assigned_for_tagging){ " +
+      "   ready = true; " +
+      " } else{ " + 
+      "   ready = false " +
+      " } " +
+      " emit(ready, doc); " + 
+      "} " 
+    },
 
+    "images_tagged_per_email" : {
+      "map" : " function(doc){  "+
+          " if(doc.tags && doc.tags.faces && doc.tags.faces[0] && doc.tags.faces[0].center_pos){  "+
+          "  emit(doc.tags.faces[0].center_pos.user, 1); "+
+          " }else{ " +
+//          "   emit ('bad', 1);" +
+          " } " +
+          " } " ,
+      "reduce" : "_count" 
+    },
 
-    }
+    "faces_tagged_per_email" : {
+      "map" : " function(doc){  "+
+          " if(doc.tags && doc.tags.faces && doc.tags.faces[0] && doc.tags.faces[0].center_pos){  "+
+          "  emit(doc.tags.faces[0].center_pos.user, doc.tags.faces && doc.tags.faces.length); "+
+          " }else{ " +
+//          "   emit ('bad', 1);" +
+          " } " +
+          " } " ,
+      "reduce" : "_sum" 
+    }    
+  }
 
 };
 

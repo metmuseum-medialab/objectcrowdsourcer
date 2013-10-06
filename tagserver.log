@@ -1449,3 +1449,534 @@ face
    { value: [ 0.5040485829959515, 0.37333333333333335 ],
      user: 'asd' } }
 ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '436630',
+  rev: '3-684e28df88608b8b7c3d0a94a25d1e59',
+  faces: '[{"center_pos":{"value":[0.3089770354906054,0.1],"user":"asd"}},{"center_pos":{"value":[0.4342379958246347,0.28833333333333333],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: { value: [ 0.3089770354906054, 0.1 ], user: 'asd' } }
+face
+{ center_pos: 
+   { value: [ 0.4342379958246347, 0.28833333333333333 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '436638',
+  rev: '3-6b400aaf0967f290f61da44c73f1aa28',
+  faces: '[{"center_pos":{"value":[0.41687344913151364,0.42333333333333334],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.41687344913151364, 0.42333333333333334 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '436638',
+  rev: '3-6b400aaf0967f290f61da44c73f1aa28',
+  faces: '[{"center_pos":{"value":[0.41687344913151364,0.42333333333333334],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.41687344913151364, 0.42333333333333334 ],
+     user: 'asd' } }
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '436638',
+  rev: '3-6b400aaf0967f290f61da44c73f1aa28',
+  faces: '[{"center_pos":{"value":[0.41687344913151364,0.42333333333333334],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.41687344913151364, 0.42333333333333334 ],
+     user: 'asd' } }
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10174',
+  rev: '1-7b2cd940dcae2cc9140e8f46efdffa13',
+  faces: '[{"center_pos":{"value":[0.17938144329896907,0.17],"user":"asd"}},{"center_pos":{"value":[0.3752577319587629,0.32166666666666666],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: { value: [ 0.17938144329896907, 0.17 ], user: 'asd' } }
+face
+{ center_pos: 
+   { value: [ 0.3752577319587629, 0.32166666666666666 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10409',
+  rev: '1-ae5a2ace5c71e57a3c140b786cdf4022',
+  faces: '[{"center_pos":{"value":[0.7183098591549296,0.07333333333333333],"user":"asd"}},{"center_pos":{"value":[0.4225352112676056,0.23166666666666666],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.7183098591549296, 0.07333333333333333 ],
+     user: 'asd' } }
+face
+{ center_pos: 
+   { value: [ 0.4225352112676056, 0.23166666666666666 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10054',
+  rev: '1-7b93017b0ef0caed5ec6de2bc642ac45',
+  faces: '[{"center_pos":{"value":[0.2413793103448276,0.14333333333333334],"user":"asd"}},{"center_pos":{"value":[0.36015325670498083,0.265],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.2413793103448276, 0.14333333333333334 ],
+     user: 'asd' } }
+face
+{ center_pos: { value: [ 0.36015325670498083, 0.265 ], user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10059',
+  rev: '1-597d3814ec8f25907e58b15e66294a21',
+  faces: '[{"center_pos":{"value":[0.47216035634743875,0.4],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: { value: [ 0.47216035634743875, 0.4 ], user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10409',
+  rev: '1-ae5a2ace5c71e57a3c140b786cdf4022',
+  faces: '[{"center_pos":{"value":[0.7183098591549296,0.07333333333333333],"user":"asd"}},{"center_pos":{"value":[0.4225352112676056,0.23166666666666666],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.7183098591549296, 0.07333333333333333 ],
+     user: 'asd' } }
+face
+{ center_pos: 
+   { value: [ 0.4225352112676056, 0.23166666666666666 ],
+     user: 'asd' } }
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10054',
+  rev: '1-7b93017b0ef0caed5ec6de2bc642ac45',
+  faces: '[{"center_pos":{"value":[0.2413793103448276,0.14333333333333334],"user":"asd"}},{"center_pos":{"value":[0.36015325670498083,0.265],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.2413793103448276, 0.14333333333333334 ],
+     user: 'asd' } }
+face
+{ center_pos: { value: [ 0.36015325670498083, 0.265 ], user: 'asd' } }
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10059',
+  rev: '1-597d3814ec8f25907e58b15e66294a21',
+  faces: '[{"center_pos":{"value":[0.47216035634743875,0.4],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: { value: [ 0.47216035634743875, 0.4 ], user: 'asd' } }
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10409',
+  rev: '1-ae5a2ace5c71e57a3c140b786cdf4022',
+  faces: '[{"center_pos":{"value":[0.7183098591549296,0.07333333333333333],"user":"asd"}},{"center_pos":{"value":[0.4225352112676056,0.23166666666666666],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.7183098591549296, 0.07333333333333333 ],
+     user: 'asd' } }
+face
+{ center_pos: 
+   { value: [ 0.4225352112676056, 0.23166666666666666 ],
+     user: 'asd' } }
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10060',
+  rev: '1-c3cd74404be2dcc4fc83013aef244264',
+  faces: '[{"center_pos":{"value":[0.39643652561247217,0.18833333333333332],"user":"asd"}},{"center_pos":{"value":[0.512249443207127,0.35],"user":"asd"}},{"center_pos":{"value":[0.6369710467706013,0.43666666666666665],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.39643652561247217, 0.18833333333333332 ],
+     user: 'asd' } }
+face
+{ center_pos: { value: [ 0.512249443207127, 0.35 ], user: 'asd' } }
+face
+{ center_pos: 
+   { value: [ 0.6369710467706013, 0.43666666666666665 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10073',
+  rev: '1-c383b459f7e4c5b564fa99682f0b545b',
+  faces: '[{"center_pos":{"value":[0.717391304347826,0.1],"user":"asd"}},{"center_pos":{"value":[0.6391304347826087,0.15166666666666667],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: { value: [ 0.717391304347826, 0.1 ], user: 'asd' } }
+face
+{ center_pos: 
+   { value: [ 0.6391304347826087, 0.15166666666666667 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10099',
+  rev: '1-3611fda1f1682f63b23cceead32e7d70',
+  faces: '[{"center_pos":{"value":[0.7201946472019465,0.16666666666666666],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.7201946472019465, 0.16666666666666666 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10101',
+  rev: '1-388517c9c9a27ed35b7789941bb2ab95',
+  faces: '[{"center_pos":{"value":[0.2119205298013245,0.185],"user":"asd"}},{"center_pos":{"value":[0.4282560706401766,0.36833333333333335],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } },
+  { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: { value: [ 0.2119205298013245, 0.185 ], user: 'asd' } }
+face
+{ center_pos: 
+   { value: [ 0.4282560706401766, 0.36833333333333335 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10103',
+  rev: '1-d587658546d6ab92dd31cbf5da892ad0',
+  faces: '[{"center_pos":{"value":[0.382051282051282,0.21166666666666667],"user":"asd"}}]' }
+[ { center_pos: { value: [Object], user: 'asd' } } ]
+face
+{ center_pos: 
+   { value: [ 0.382051282051282, 0.21166666666666667 ],
+     user: 'asd' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10109',
+  rev: '1-d9bfaf22b7da0ebdfb58670b23f34556',
+  faces: '[]' }
+[]
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10111',
+  rev: '1-4923665ac8989dc85cf0507aeb66c7f9',
+  faces: '[]' }
+[]
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10169',
+  rev: '1-96b35dd86c000e3be3a3c36f9c9e4db6',
+  faces: '[{"center_pos":{"value":[0.49411764705882355,0.31666666666666665],"user":"donundeen@yahoo.com"}}]' }
+[ { center_pos: { value: [Object], user: 'donundeen@yahoo.com' } } ]
+face
+{ center_pos: 
+   { value: [ 0.49411764705882355, 0.31666666666666665 ],
+     user: 'donundeen@yahoo.com' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10205',
+  rev: '1-b315284633e8fe71d9e35d2cae9f64aa',
+  faces: '[{"center_pos":{"value":[0.44191919191919193,0.305],"user":"donundeen@yahoo.com"}}]' }
+[ { center_pos: { value: [Object], user: 'donundeen@yahoo.com' } } ]
+face
+{ center_pos: 
+   { value: [ 0.44191919191919193, 0.305 ],
+     user: 'donundeen@yahoo.com' } }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10237',
+  rev: '1-d926be72ed2aea7766caf78aa9819e4c',
+  faces: '[]' }
+[]
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10238',
+  rev: '1-3badb75c8a71e82fe2a4ebde2848145d',
+  faces: '[]' }
+[]
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10345',
+  rev: '1-e99db1f49b64a648aa73da132b340d8d',
+  faces: '[]' }
+[]
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10111',
+  rev: '1-4923665ac8989dc85cf0507aeb66c7f9',
+  faces: '[]' }
+[]
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10169',
+  rev: '1-96b35dd86c000e3be3a3c36f9c9e4db6',
+  faces: '[{"center_pos":{"value":[0.49411764705882355,0.31666666666666665],"user":"donundeen@yahoo.com"}}]' }
+[ { center_pos: { value: [Object], user: 'donundeen@yahoo.com' } } ]
+face
+{ center_pos: 
+   { value: [ 0.49411764705882355, 0.31666666666666665 ],
+     user: 'donundeen@yahoo.com' } }
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10205',
+  rev: '1-b315284633e8fe71d9e35d2cae9f64aa',
+  faces: '[{"center_pos":{"value":[0.44191919191919193,0.305],"user":"donundeen@yahoo.com"}}]' }
+[ { center_pos: { value: [Object], user: 'donundeen@yahoo.com' } } ]
+face
+{ center_pos: 
+   { value: [ 0.44191919191919193, 0.305 ],
+     user: 'donundeen@yahoo.com' } }
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+in updateObjectFaces
+{ action: 'updateObjectFaces',
+  objectId: '10237',
+  rev: '1-d926be72ed2aea7766caf78aa9819e4c',
+  faces: '[]' }
+[]
+ok
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+writing file /index.html
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+writing file /css/bootstrap.min.css
+writing file /js/jquery-1.10.2.min.js
+writing file /js/raphael-min.js
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+file read error
+{ [Error: ENOENT, open './js/jquery-1.10.2.min.map'] errno: 34, code: 'ENOENT', path: './js/jquery-1.10.2.min.map' }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+writing file /index.html
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+writing file /css/bootstrap.min.css
+writing file /js/raphael-min.js
+writing file /js/jquery-1.10.2.min.js
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+file read error
+{ [Error: ENOENT, open './js/jquery-1.10.2.min.map'] errno: 34, code: 'ENOENT', path: './js/jquery-1.10.2.min.map' }
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+getting next object
