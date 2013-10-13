@@ -12,7 +12,7 @@
 
 $( document ).ready(function() {
 
-
+	showSummaryData();
 
   var offline = false;
 
@@ -415,6 +415,19 @@ function faceTapped(x,y){
 
 });
 
+
+function showSummaryData(){
+	$.ajax({
+  		url: "/?action=getSummary",
+  		success : function(data, status){
+  			console.log(data);
+  			$("#summarydata").text("total of " + data.total_rows + " objects in db");
+
+  		}
+
+  	});
+}
+
 </script>
 </head>
 <body>
@@ -434,6 +447,10 @@ function faceTapped(x,y){
 				</div>
 
 			</div>
+		</div>
+
+		<div class="row-fluid-banner" >
+			<div class="span12" id="summarydata"></div>
 		</div>
 
 	</div>

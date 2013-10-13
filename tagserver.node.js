@@ -213,8 +213,8 @@ function updateObjectFaces(query, request, response){
 
 
 function getSummary(query, request, response){
-  var contentType = "text/html";
-  res.writeHead(200, {'Content-Type': contentType});
+  var contentType = "application/json";
+  response.writeHead(200, {'Content-Type': contentType});
   db.view("objecttagger", "objects_ready_for_face_tag", {keys: [true], limit: 1 } , 
   function(err, body){
 
@@ -226,7 +226,7 @@ function getSummary(query, request, response){
       console.log(body);
       msg += "body: " + body;
     }
-    res.end(msg);
+    response.end(JSON.stringify(body));
 
   });
 
