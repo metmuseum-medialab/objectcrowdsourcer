@@ -1,0 +1,20 @@
+// package
+{ "name": "objectcrowdsourcer"
+, "homepage": "http://metmuseum.org"
+, "bugs": "https://github.com/donundeen/objectcrowdsourcer/issues"
+, "licenses": [ "ISC" ]
+, "version": "0.0.1"
+, "description": "tagging objects with faces and other data"
+, "author": "don undeen <don.undeen@metmuseum.org>"
+, "dependencies":
+  { "nano": "4.1.4"
+  }
+,  "engines": {
+    "node": "0.10.x",
+    "npm":  "1.2.x"
+  }
+,  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/donundeen/objectcrowdsourcer.git"
+  }
+}
