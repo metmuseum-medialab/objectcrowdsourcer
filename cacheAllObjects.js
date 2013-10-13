@@ -87,7 +87,7 @@ $(terms).each(function(index, term){
 
 
 	metRunner1.run();
-}
+});
 
 
 
