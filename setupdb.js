@@ -70,6 +70,18 @@ var design = {
       "reduce" : "_count" 
     },
 
+    "total_tagged_objects" : {
+      "map" : " function(doc){  "+
+          " if(doc.tags){  "+
+          "  emit(doc.tags.faces[0].center_pos.user, 1); "+
+          " }else{ " +
+//          "   emit ('bad', 1);" +
+          " } " +
+          " } " ,
+      "reduce" : "_count" 
+    },
+
+
     "total_objects" : {
       "map" : " function(doc){  "+
           "  emit(doc, 1); "+

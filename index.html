@@ -417,15 +417,24 @@ function faceTapped(x,y){
 
 
 function showSummaryData(){
+	console.log("gonna show summary");
 	$.ajax({
   		url: "/?action=getSummary",
   		success : function(data, status){
   			console.log(data);
-  			$("#summarydata").text("total of " + data.total_rows + " objects in db");
+  			var string = "total of " + data.total_objects.rows[0].value + " objects in db<BR>";
+  			string += data.total_tagged_objects.rows[0].value +  " are tagged";
+  			$("#summarydata").html(string);
 
+  		},
+  		error : function(jqXHR, status, message){
+  			console.log("error ");
+  			console.log(status);
+  			console.log(message);
   		}
 
   	});
+  	setTimeout(showSummaryData, 10000);
 }
 
 </script>

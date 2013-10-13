@@ -213,21 +213,50 @@ function updateObjectFaces(query, request, response){
 
 
 function getSummary(query, request, response){
+
+
+
+
+
+  var allData = {};
   var contentType = "application/json";
   response.writeHead(200, {'Content-Type': contentType});
-  db.view("objecttagger", "objects_ready_for_face_tag", {keys: [true], limit: 1 } , 
+  db.view("objecttagger", "total_objects" , 
   function(err, body){
-
     var msg = "";
     if(err){
-      msg += "error: " + err;
+      console.log("error" + err);
     }else{
-      console.log("getting summary");
+      console.log("getting total objects");
       console.log(body);
+      allData.total_objects = body;
       msg += "body: " + body;
     }
-    response.end(JSON.stringify(body));
-
+    maybeWriteSummary(allData, response);
   });
 
+  db.view("objecttagger", "total_tagged_objects" , 
+  function(err, body){
+    var msg = "";
+    if(err){
+      console.log("error" + err);
+    }else{
+      console.log("getting total tagged objects");
+      console.log(body);
+      allData.total_tagged_objects = body;
+    }
+    maybeWriteSummary(allData, response);
+  });
+
+
+}
+
+function maybeWriteSummary(allData, response){
+  console.log(allData);
+  if(allData.total_objects && allData.total_tagged_objects){
+    console.log("gonna end");
+    response.end(JSON.stringify(allData));
+  }else{
+    console.log("still waiting");
+  }
 }
