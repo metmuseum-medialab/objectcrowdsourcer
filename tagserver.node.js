@@ -228,6 +228,6 @@ function getSummary(query, request, response){
     }
     res.end(msg);
 
-  }
+  });
 
 }
