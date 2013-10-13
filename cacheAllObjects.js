@@ -56,18 +56,18 @@ var finishedCallback = function(){
 }
 
 var terms = [
-"portrait",
-"merry",
-"smiling",
-"smiles",
-"happy",
-"joy",
-"bust",
-"face",
-"festive",
-"laugh",
-"face",
-"head"
+	"portrait",
+	"merry",
+	"smiling",
+	"smiles",
+	"happy",
+	"joy",
+	"bust",
+	"face",
+	"festive",
+	"laugh",
+	"face",
+	"head"
 
 ];
 

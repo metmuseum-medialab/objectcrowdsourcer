@@ -70,6 +70,14 @@ var design = {
       "reduce" : "_count" 
     },
 
+    "total_objects" : {
+      "map" : " function(doc){  "+
+          "  emit(doc, 1); "+
+          " } " ,
+      "reduce" : "_count" 
+    },
+
+
     "faces_tagged_per_email" : {
       "map" : " function(doc){  "+
           " if(doc.tags && doc.tags.faces && doc.tags.faces[0] && doc.tags.faces[0].center_pos){  "+

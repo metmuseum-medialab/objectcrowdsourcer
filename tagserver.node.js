@@ -99,6 +99,8 @@ function parseRequest(req, res){
 
   }else if (query.action == "updateObjectFaces"){
     updateObjectFaces(query, req, res);
+  }else if (query.action == "getSummary"){
+    getSummary(query, req, res);
   }else{
    res.writeHead(200, {'Content-Type': 'text/html'});
    res.end("<html><body><pre>not sure what to do</pre></body></html>");
@@ -208,3 +210,24 @@ function updateObjectFaces(query, request, response){
 
 }
 
+
+
+function getSummary(query, request, response){
+  var contentType = "text/html";
+  res.writeHead(200, {'Content-Type': contentType});
+  db.view("objecttagger", "objects_ready_for_face_tag", {keys: [true], limit: 1 } , 
+  function(err, body){
+
+    var msg = "";
+    if(err){
+      msg += "error: " + err;
+    }else{
+      console.log("getting summary");
+      console.log(body);
+      msg += "body: " + body;
+    }
+    res.end(msg);
+
+  }
+
+}

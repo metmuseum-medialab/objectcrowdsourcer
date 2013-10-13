@@ -113,7 +113,7 @@ metRunner.prototype.getMetObjectsPage = function(pageNumber){
 
 metRunner.prototype.wait = function(){
 	realthis = this;
-	if(this.pendingCalls > 3000){
+	if(this.pendingCalls > 30){
 		console.log(this.pendingCalls + " too many pending, waiting");
 		setTimeout(function(){realthis.wait();},1000);
 	}
