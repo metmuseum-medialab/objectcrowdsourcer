@@ -55,22 +55,39 @@ var finishedCallback = function(){
 
 }
 
+var terms = [
+"portrait",
+"merry",
+"smiling",
+"smiles",
+"happy",
+"joy",
+"bust",
+"face",
+"festive",
+"laugh",
+"face",
+"head"
 
-var metRunner = metRunner.getMetRunner({
-									numObjects : 10,	
-									startpage : 1,
-									endpage : 6500,
-                  useCache : false,
-                  withImages : true,
-                  query : 'merry',
-									objectCallback: objectCallback, 
-									filterCallback : filterCallback,
-									finishedCallback : finishedCallback});
+];
+
+$(terms).each(function(index, term){
+	console.log("searching term " + term);
+
+	var metRunner1 = metRunner.getMetRunner({
+										numObjects : 10,	
+										startpage : 1,
+										endpage : 6500,
+	                  useCache : false,
+	                  withImages : true,
+	                  query : term,
+										objectCallback: objectCallback, 
+										filterCallback : filterCallback,
+										finishedCallback : finishedCallback});
 
 
-metRunner.run();
-
-
+	metRunner1.run();
+}
 
 
 
