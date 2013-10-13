@@ -23,8 +23,10 @@ $( document ).ready(function() {
   var paper = Raphael("elemfortagging", 400, 600);
 
   var cachedObject = false;
-  var cachedImage = false; 
+  var cachedImageObj = false;
+  var cachedPaperImage = false; 
   var currentObject = false;
+  var currentPaperImage = false;
   var currentObjectWidth = 1;
   var currentObjectHeight = 1;
 
@@ -168,10 +170,13 @@ $( document ).ready(function() {
 	}
 	var imgObj = new Image();
 	console.log("clearing");
-	paper.clear();
+	if(currentPaperImage){}
+	currentPaperImage.remove();
+	currentPaperImage = null;
+}
 	imgObj.onload = function(){
 		var result = ScaleImage(imgObj.width, imgObj.height, 400, 600, true);
-		var image = paper.image(theimage, 0,0, result.width, result.height);
+		currentPaperImage = paper.image(theimage, 0,0, result.width, result.height);
 		currentObjectWidth = result.width;
 		currentObjectHeight = result.height;
 		image.click(function(evt){
@@ -192,7 +197,6 @@ $( document ).ready(function() {
 	  		url: "/?action=nextObject",
 	  		success : function(data, status){
 	  			cachedObject = data;
-
 	  		},
 
 	  		error : function(jqXHR, status, message){
