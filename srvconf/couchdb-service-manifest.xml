@@ -3,8 +3,11 @@
 <!-- notes here:
 http://marius.me.uk/blog/2013/04/tips-nodejs-deployment-smartos/
 http://wiki.smartos.org/display/DOC/Basic+SMF+Commands#BasicSMFCommands-StartingandStopingServicessvcadm
-svcadm restart node-objectcrowdsourcer-service 
-tail -f -n 50 "/var/svc//log/site-node-objectcrowdsourcer-service:default.log" 
+svccfg import ./srvconf/couchdb-service-manifest.xml 
+svcadm enable couchdb-service 
+svcadm disable couchdb-service 
+svcadm restart couchdb-service 
+tail -f -n 50 "/var/svc//log/site-couchdb-service:default.log" 
 -->
 <service_bundle type="manifest" name="couchdb-service">
   <service name="site/couchdb-service" type="service" version="1">
