@@ -56,38 +56,52 @@ var finishedCallback = function(){
 }
 
 var terms = [
+"silly",
+	"joy",
+	"bust",
+	"face",
+	"festive",
 	"portrait",
 	"merry",
 	"smiling",
 	"smiles",
 	"happy",
-	"joy",
-	"bust",
-	"face",
-	"festive",
 	"laugh",
 	"face",
 	"head"
 
 ];
 
-$(terms).each(function(index, term){
-	console.log("searching term " + term);
+function callForTerm(termIndex){
+	var term = terms[termIndex];
+	termIndex++;
+	var more = true;
+	if(termIndex >= terms.length){
+		more = false;
+	}
 
-	var metRunner1 = metRunner.getMetRunner({
-										numObjects : 10,	
-										startpage : 1,
-										endpage : 6500,
-	                  useCache : false,
-	                  withImages : true,
-	                  query : term,
-										objectCallback: objectCallback, 
-										filterCallback : filterCallback,
-										finishedCallback : finishedCallback});
-
-
+	var options = {
+					numObjects : 10,	
+					startpage : 1,
+					endpage : 6500,
+                    useCache : false,
+	                withImages : true,
+	                query : term,
+					objectCallback: objectCallback, 
+					filterCallback : filterCallback,
+					finishedCallback : finishedCallback
+				};
+	if(more){
+		options.finishedCallback = function(){callForTerm(termIndex);}
+	}else{
+		options.finishedCallback = finishedCallback;
+	}
+	var metRunner1 = metRunner.getMetRunner(options);
 	metRunner1.run();
-});
+
+}
+
+callForTerm(0);
 
 
 

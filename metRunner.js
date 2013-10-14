@@ -48,6 +48,8 @@ function getMetRunner(options){
 }
 
 var metRunner = function(options){
+	this.numskipped = 0;
+	this.skipnum  = options.skipnum;
 	this.keepGettingPages = true;
 	this.numObjects = options.numObjects;
 	this.useCache = options.useCache;
@@ -95,7 +97,7 @@ metRunner.prototype.getMetObjectsPage = function(pageNumber){
 	}
 	var realthis = this;
 //	console.log("calling objectlist url " + url);
-	this.cacheProxy(url, function(idList){realthis.processMetList(idList)});
+	this.cacheProxy(url, function(idList){realthis.processMetList(idList)}, function(){realthis.keepGettingPages = false});
 	var realthis = this;
 	pageNumber++;
 	if(this.keepGettingPages && pageNumber < this.endpage){
@@ -107,13 +109,16 @@ metRunner.prototype.getMetObjectsPage = function(pageNumber){
 			*/
 			setTimeout(function(){realthis.getMetObjectsPage(pageNumber);}, 1000);
 //		}
+	}else if (!this.keepGettingPages){
+		this.finishedCallback();
+
 	}
 }
 
 
 metRunner.prototype.wait = function(){
 	realthis = this;
-	if(this.pendingCalls > 30){
+	if(this.pendingCalls > 10){
 		console.log(this.pendingCalls + " too many pending, waiting");
 		setTimeout(function(){realthis.wait();},1000);
 	}
@@ -238,7 +243,7 @@ metRunner.prototype.urlToKey = function(url){
 
 }
 
-metRunner.prototype.cacheProxy = function (url, callback) {
+metRunner.prototype.cacheProxy = function (url, callback, failureCallback) {
 	// if use the url as key, try to get the object from cache.
 
 	// if not in cache, load from url, then save in cache. 
@@ -289,6 +294,7 @@ metRunner.prototype.cacheProxy = function (url, callback) {
 			console.log("failure");
 			console.log(retdata);
 			realthis.pendingCalls--;
+			if(failureCallback){failureCallback();}
 		},
 		success : function (retdata){
 			// console.log("|"+retdata+"|");
