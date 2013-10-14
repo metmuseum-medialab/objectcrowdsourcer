@@ -170,7 +170,15 @@ function get_unassigned_object(res){
 
   db.view("objecttagger", "objects_ready_for_face_tag", {keys: [true], limit: 1 } , 
   function(err, body){
-    if(body.rows.length == 0){
+
+    if(err){
+      console.log("error getting next object");
+      console.log(err);
+      res.end("{}");
+      return;
+    }
+
+    if(!body || body.rows.length == 0){
       res.end("{}");
       return; 
     }
