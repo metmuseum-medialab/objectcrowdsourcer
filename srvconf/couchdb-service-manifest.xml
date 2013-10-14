@@ -1,9 +1,5 @@
 <?xml version='1.0'?>
 <!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'> 
-<!-- 
-  svcadm enable/disable/restart couch
-  tail -f -n 50 "/var/svc//log/application-database-couch:default.log" 
-  -->
 <service_bundle type='manifest' name='export'>
   <service name='application/database/couch' type='service' version='0'>
     <create_default_instance enabled='false'/>
@@ -14,7 +10,7 @@
     <dependency name='filesystem-local' grouping='require_all' restart_on='none' type='service'>
       <service_fmri value='svc:/system/filesystem/local:default'/>
     </dependency>
-    <exec_method name='start' type='method' exec='/opt/local/bin/couchdb -b -o /opt/local/var/run/couchdb/couchdb.stdout -e /opt/local/var/run/couchdb/couchdb.stderr -p /opt/local/var/run/couchdb/couchdb.pid' timeout_seconds='300'>
+    <exec_method name='start' type='method' exec='/opt/local/bin/couchdb -b -o /opt/local/var/run/couchdb/couchdb.stdout -e /opt/local/var/run/couchdb/couchdb.stderr ' timeout_seconds='300'>
       <method_context>
         <method_credential user='couchdb' group='couchdb'/>
         <method_environment>
@@ -23,7 +19,7 @@
         </method_environment>
       </method_context>
     </exec_method>
-    <exec_method name='stop' type='method' exec='/opt/local/bin/couchdb -d -p /opt/local/var/run/couchdb/couchdb.pid' timeout_seconds='300'>
+    <exec_method name='stop' type='method' exec='/opt/local/bin/couchdb -d ' timeout_seconds='300'>
       <method_context>
         <method_credential user='couchdb' group='couchdb'/>
         <method_environment>
