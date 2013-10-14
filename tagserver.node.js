@@ -237,7 +237,7 @@ function getSummary(query, request, response){
     if(err){
       console.log("error getting summary");
       console.log(err);
-      res.end("{}");
+      response.end("{}");
       return;
     }
 
