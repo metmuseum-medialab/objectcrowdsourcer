@@ -306,6 +306,7 @@ function faceTapped(x,y){
 	})
 
 	circle.drag(
+
 		function(dx,dy, x,y){
 			tAddX=dx-fDx;
 			tAddY=dy-fDy;
@@ -327,6 +328,10 @@ function faceTapped(x,y){
 			}
 		 },
 		 function(){
+
+			$(".facetag").css("border","none");
+			$("#faces"+index).css("border","2px solid black");
+			$("#faces"+index).css("border-radius","5px");
 
 		 }, 
 		 function (evt) {
@@ -363,7 +368,7 @@ function faceTapped(x,y){
 		console.log("Adding face");
 		faces[index] = {};
 		numFaces++;
-		$("#facetags").append("<div id='"+id+"' class='facetag style='margin-bottom: 5px;'><span style='border-radius: 5px; background: lightblue;  padding-left: 3px; padding-right: 3px;'>smile at: <span class='x'>"+x+"</span>, <span class='y'>"+y+"</span></span><span class='email' style='display: none;'>"+email+"</span><span class='deleteface' style='margin-left:10px; background:plum; border-radius: 5px; padding-left: 3px; padding-right: 3px;'>delete</span></div>");
+		$("#facetags").append("<div id='"+id+"' class='facetag' style='margin-bottom: 3px;'><span style='border-radius: 5px; background: lightblue;  padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;'>smile at: <span class='x'>"+x+"</span>, <span class='y'>"+y+"</span></span><span class='email' style='display: none;'>"+email+"</span><span class='deleteface' style='float: right; background:plum; border-radius: 5px; padding-left: 3px; padding-right: 3px;'>delete</span></div>");
 		if(circle){
 			faces[index].circle = circle;
 			faces[index].outerCircle = outerCircle;
