@@ -66,7 +66,10 @@ var nano = require('nano')('http://localhost:5984');
 var db = nano.use(db_name);
 
 
-
+var port = 1337;
+if(process && process.env && process.env.NODE_ENV == "production"){
+  port = 80;
+}
 // create some sample objects, put in couchdb
 
 
@@ -77,10 +80,10 @@ var http = require('http');
 http.createServer(function (req, res) {
   parseRequest(req, res);
 
-}).listen(1337);
+}).listen(port);
 
 
-console.log('Server running at :1337/');
+console.log('Server running at port ' + port);
 
 
 function parseRequest(req, res){

@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<!-- notes here:
+http://marius.me.uk/blog/2013/04/tips-nodejs-deployment-smartos/
+http://wiki.smartos.org/display/DOC/Basic+SMF+Commands#BasicSMFCommands-StartingandStopingServicessvcadm
+-->
 <service_bundle type="manifest" name="node-objectcrowdsourcer-service">
   <service name="site/node-objectcrowdsourcer-service" type="service" version="1">
   <create_default_instance enabled="true"/>
