@@ -15,7 +15,7 @@
         <method_credential user='couchdb' group='couchdb'/>
         <method_environment>
           <envvar name="HOME" value="/opt/local/var/lib/couchdb" />
-          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" />
+<!--          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" /> -->
         </method_environment>
       </method_context>
     </exec_method>
