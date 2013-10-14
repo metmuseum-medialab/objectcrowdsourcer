@@ -6,8 +6,8 @@ http://wiki.smartos.org/display/DOC/Basic+SMF+Commands#BasicSMFCommands-Starting
 svcadm restart node-objectcrowdsourcer-service 
 tail -f -n 50 "/var/svc//log/site-node-objectcrowdsourcer-service:default.log" 
 -->
-<service_bundle type="manifest" name="node-objectcrowdsourcer-service">
-  <service name="site/node-objectcrowdsourcer-service" type="service" version="1">
+<service_bundle type="manifest" name="couchdb-service">
+  <service name="site/couchdb-service" type="service" version="1">
   <create_default_instance enabled="true"/>
   <single_instance/>
   <dependency name="network" grouping="require_all" restart_on="refresh" type="service">
@@ -29,7 +29,7 @@ tail -f -n 50 "/var/svc//log/site-node-objectcrowdsourcer-service:default.log"
   <exec_method
     type="method"
     name="start"
-    exec="/opt/local/bin/node /root/apps/objectcrowdsourcer/tagserver.node.js"
+    exec="/opt/local/bin/couchdb"
     timeout_seconds="60"/>
   
   <exec_method
@@ -50,7 +50,7 @@ tail -f -n 50 "/var/svc//log/site-node-objectcrowdsourcer-service:default.log"
 
   <template>
     <common_name>
-      <loctext xml:lang="C">node.js object crowdsourcer service</loctext>
+      <loctext xml:lang="C">couchdb service</loctext>
     </common_name>
   </template>
   </service>
