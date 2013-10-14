@@ -1,8 +1,5 @@
-
 <?xml version='1.0'?>
- 
-<!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
- 
+<!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'> 
 <service_bundle type='manifest' name='export'>
   <service name='application/database/couch' type='service' version='0'>
     <create_default_instance enabled='false'/>
