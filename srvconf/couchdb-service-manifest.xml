@@ -4,6 +4,14 @@
   <service name='application/database/couch' type='service' version='0'>
     <create_default_instance enabled='false'/>
     <single_instance/>
+    
+    <dependency name='network' grouping='require_all' restart_on='none' type='service'>
+      <service_fmri value='svc:/milestone/network:default'/>
+    </dependency>
+    <dependency name='filesystem-local' grouping='require_all' restart_on='none' type='service'>
+      <service_fmri value='svc:/system/filesystem/local:default'/>
+    </dependency>
+  
   <!--
     <dependency name="network" grouping="require_all" restart_on="error" type="service">
       <service_fmri value="svc:/milestone/network:default" />
