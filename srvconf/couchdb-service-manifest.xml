@@ -14,8 +14,8 @@
       <method_context>
         <method_credential user='couchdb' group='couchdb'/>
         <method_environment>
-          <envvar name="HOME" value="/opt/local/var/lib/couchdb" />
-<!--          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" /> -->
+        <envvar name="PATH" value="/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/bin" />
+        <envvar name="HOME" value="/var/db/couchdb" />
         </method_environment>
       </method_context>
     </exec_method>
@@ -23,8 +23,8 @@
       <method_context>
         <method_credential user='couchdb' group='couchdb'/>
         <method_environment>
-          <envvar name="HOME" value="/opt/local/var/lib/couchdb" />
-<!--          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" /> -->
+        <envvar name="PATH" value="/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/bin" />
+        <envvar name="HOME" value="/var/db/couchdb" /><!--          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" /> -->
         </method_environment>
       </method_context>
     </exec_method>
