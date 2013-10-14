@@ -1,60 +1,46 @@
-<?xml version="1.0"?>
-<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
-<!-- notes here:
-http://marius.me.uk/blog/2013/04/tips-nodejs-deployment-smartos/
-http://wiki.smartos.org/display/DOC/Basic+SMF+Commands#BasicSMFCommands-StartingandStopingServicessvcadm
-svccfg import ./srvconf/couchdb-service-manifest.xml 
-svcadm enable couchdb-service 
-svcadm disable couchdb-service 
-svcadm restart couchdb-service 
-tail -f -n 50 "/var/svc//log/site-couchdb-service:default.log" 
--->
-<service_bundle type="manifest" name="couchdb-service">
-  <service name="site/couchdb-service" type="service" version="1">
-  <create_default_instance enabled="true"/>
-  <single_instance/>
-  <dependency name="network" grouping="require_all" restart_on="refresh" type="service">
-    <service_fmri value="svc:/milestone/network:default"/>
-  </dependency>
-  <dependency name="filesystem" grouping="require_all" restart_on="refresh" type="service">
-    <service_fmri value="svc:/system/filesystem/local"/>
-  </dependency>
-  
-  <method_context working_directory="/root/apps/objectcrowdsourcer">
-    <method_credential user="admin" group="staff" privileges='basic,net_privaddr'  />
-    <method_environment>
-      <envvar name="PATH" value="/usr/local/bin:/usr/bin:/usr/sbin:/bin"/>
-      <envvar name="HOME" value="/root/apps/objectcrowdsourcer"/>
-      <envvar name="NODE_ENV" value="production"/>
-    </method_environment>
-  </method_context>
-  
-  <exec_method
-    type="method"
-    name="start"
-    exec="/opt/local/bin/couchdb"
-    timeout_seconds="60"/>
-  
-  <exec_method
-    type="method"
-    name="stop"
-    exec=":kill"
-    timeout_seconds="60"/>
 
-  <property_group name="startd" type="framework">
-    <propval name="duration" type="astring" value="child"/>
-    <propval name="ignore_error" type="astring" value="core,signal"/>
-  </property_group>
-
-  <property_group name="application" type="application">
-  </property_group>
-
-  <stability value="Evolving"/>
-
-  <template>
-    <common_name>
-      <loctext xml:lang="C">couchdb service</loctext>
-    </common_name>
-  </template>
+<?xml version='1.0'?>
+ 
+<!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
+ 
+<service_bundle type='manifest' name='export'>
+  <service name='application/database/couch' type='service' version='0'>
+    <create_default_instance enabled='false'/>
+    <single_instance/>
+    <dependency name='network' grouping='require_all' restart_on='none' type='service'>
+      <service_fmri value='svc:/milestone/network:default'/>
+    </dependency>
+    <dependency name='filesystem-local' grouping='require_all' restart_on='none' type='service'>
+      <service_fmri value='svc:/system/filesystem/local:default'/>
+    </dependency>
+    <exec_method name='start' type='method' exec='/opt/local/bin/couchdb -b -o /opt/local/var/run/couchdb/couchdb.stdout -e /opt/local/var/run/couchdb/couchdb.stderr -p /opt/local/var/run/couchdb/couchdb.pid' timeout_seconds='300'>
+      <method_context>
+        <method_credential user='couchdb' group='couchdb'/>
+        <method_environment>
+          <envvar name="HOME" value="/opt/local/var/lib/couchdb" />
+          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" />
+        </method_environment>
+      </method_context>
+    </exec_method>
+    <exec_method name='stop' type='method' exec='/opt/local/bin/couchdb -d -p /opt/local/var/run/couchdb/couchdb.pid' timeout_seconds='300'>
+      <method_context>
+        <method_credential user='couchdb' group='couchdb'/>
+        <method_environment>
+          <envvar name="HOME" value="/opt/local/var/lib/couchdb" />
+          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" />
+        </method_environment>
+      </method_context>
+    </exec_method>
+    <stability value='Evolving'/>
+    <template>
+      <common_name>
+        <loctext xml:lang='C'>Apache CouchDB</loctext>
+      </common_name>
+      <documentation>
+        <manpage title='couchdb' section='1M'/>
+        <doc_link name='incubator.apache.org' uri='http://incubator.apache.org/couchdb/'/>
+      </documentation>
+    </template>
   </service>
+ 
 </service_bundle>

@@ -3,6 +3,9 @@
 <!-- notes here:
 http://marius.me.uk/blog/2013/04/tips-nodejs-deployment-smartos/
 http://wiki.smartos.org/display/DOC/Basic+SMF+Commands#BasicSMFCommands-StartingandStopingServicessvcadm
+svccfg import ./srvconf/objectcrowdsourcer-service-manifest.xml 
+svcadm enable node-objectcrowdsourcer-service 
+svcadm disable node-objectcrowdsourcer-service 
 svcadm restart node-objectcrowdsourcer-service 
 tail -f -n 50 "/var/svc//log/site-node-objectcrowdsourcer-service:default.log" 
 -->
