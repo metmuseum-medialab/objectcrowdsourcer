@@ -234,6 +234,13 @@ function getSummary(query, request, response){
   response.writeHead(200, {'Content-Type': contentType});
   db.view("objecttagger", "total_objects" , 
   function(err, body){
+    if(err){
+      console.log("error getting summary");
+      console.log(err);
+      res.end("{}");
+      return;
+    }
+
     var msg = "";
     if(err){
       console.log("error" + err);
