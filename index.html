@@ -447,6 +447,9 @@ function showSummaryData(){
 	$.ajax({
   		url: "/?action=getSummary",
   		success : function(data, status){
+  			if(!data || !data.total_objects){
+  				return;
+  			}
   			console.log(data);
   			var string = "total of " + data.total_objects.rows[0].value + " objects in db<BR>";
   			string += data.total_tagged_objects.rows[0].value +  " are tagged";
