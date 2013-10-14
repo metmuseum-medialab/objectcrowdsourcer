@@ -10,7 +10,7 @@
     <dependency name='filesystem-local' grouping='require_all' restart_on='none' type='service'>
       <service_fmri value='svc:/system/filesystem/local:default'/>
     </dependency>
-    <exec_method name='start' type='method' exec='/opt/local/bin/couchdb -b -o /opt/local/var/run/couchdb/couchdb.stdout -e /opt/local/var/run/couchdb/couchdb.stderr ' timeout_seconds='300'>
+    <exec_method name='start' type='method' exec='/opt/local/bin/couchdb -b ' timeout_seconds='300'>
       <method_context>
         <method_credential user='couchdb' group='couchdb'/>
         <method_environment>
@@ -24,7 +24,7 @@
         <method_credential user='couchdb' group='couchdb'/>
         <method_environment>
           <envvar name="HOME" value="/opt/local/var/lib/couchdb" />
-          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" />
+<!--          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" /> -->
         </method_environment>
       </method_context>
     </exec_method>
