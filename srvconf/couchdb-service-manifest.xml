@@ -4,30 +4,32 @@
   <service name='application/database/couch' type='service' version='0'>
     <create_default_instance enabled='false'/>
     <single_instance/>
+    <!--
     <dependency name='network' grouping='require_all' restart_on='none' type='service'>
       <service_fmri value='svc:/milestone/network:default'/>
     </dependency>
     <dependency name='filesystem-local' grouping='require_all' restart_on='none' type='service'>
       <service_fmri value='svc:/system/filesystem/local:default'/>
     </dependency>
-    <exec_method name='start' type='method' exec='/opt/local/bin/couchdb -b ' timeout_seconds='300'>
-      <method_context>
-        <method_credential user='couchdb' group='couchdb'/>
-        <method_environment>
-        <envvar name="PATH" value="/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/bin" />
-        <envvar name="HOME" value="/var/db/couchdb" />
-        </method_environment>
-      </method_context>
-    </exec_method>
-    <exec_method name='stop' type='method' exec='/opt/local/bin/couchdb -d ' timeout_seconds='300'>
-      <method_context>
-        <method_credential user='couchdb' group='couchdb'/>
-        <method_environment>
-        <envvar name="PATH" value="/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/bin" />
-        <envvar name="HOME" value="/var/db/couchdb" /><!--          <envvar name="LD_LIBRARY_PATH" value="/opt/local/lib:/opt/local/spidermonkey/lib" /> -->
-        </method_environment>
-      </method_context>
-    </exec_method>
+  -->
+    <dependency name="network" grouping="require_all" restart_on="error" type="service">
+      <service_fmri value="svc:/milestone/network:default" />
+    </dependency>
+    <dependency name="filesystem" grouping="require_all" restart_on="error" type="service">
+      <service_fmri value="svc:/system/filesystem/local" />
+    </dependency>
+    <dependency name='couchdb-epmd' grouping='require_all' restart_on='none' type='service'>
+      <service_fmri value='svc:/pkgsrc/epmd' />
+    </dependency>
+    <method_context>
+      <method_credential user='couchdb' group='couchdb'/>
+      <method_environment>
+      <envvar name="PATH" value="/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/bin" />
+      <envvar name="HOME" value="/var/db/couchdb" />
+      </method_environment>
+    </method_context>
+    <exec_method name='start' type='method' exec='/opt/local/bin/couchdb -b ' timeout_seconds='300'/>
+    <exec_method type="method" name="stop" exec=":kill" timeout_seconds="60" />
     <stability value='Evolving'/>
     <template>
       <common_name>
