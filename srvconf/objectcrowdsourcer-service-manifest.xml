@@ -15,7 +15,7 @@
     <method_credential user="admin" group="staff" privileges='basic,net_privaddr'  />
     <method_environment>
       <envvar name="PATH" value="/usr/local/bin:/usr/bin:/usr/sbin:/bin"/>
-      <envvar name="HOME" value="/home/apps/objectcrowdsourcer"/>
+      <envvar name="HOME" value="/root/apps/objectcrowdsourcer"/>
       <envvar name="NODE_ENV" value="production"/>
     </method_environment>
   </method_context>
@@ -23,7 +23,7 @@
   <exec_method
     type="method"
     name="start"
-    exec="/opt/local/bin/node /home/apps/objectcrowdsourcer/tagserver.node.js"
+    exec="/opt/local/bin/node /root/apps/objectcrowdsourcer/tagserver.node.js"
     timeout_seconds="60"/>
   
   <exec_method
