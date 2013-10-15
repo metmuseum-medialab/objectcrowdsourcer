@@ -347,7 +347,17 @@ function faceTapped(x,y){
 			setFacePos(index,newX, newY);
 
 		  });
-		
+	
+	circle.touchend(function (evt) {
+		 	console.log("dragover");
+			reInitialize=true;
+			console.log(evt);
+			var newX = evt.offsetX;
+			var newY = evt.offsetY;
+			// update position in html, interal array, etc
+			setFacePos(index,newX, newY);
+
+		  });
 
 }
 
