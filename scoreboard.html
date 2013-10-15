@@ -44,13 +44,17 @@ svg {
 
 </style>
 
-
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="js/raphael-min.js"></script>
-<script type="text/javascript" src="js/d3.v3.min.js"></script>
 
 <script language='javascript'>
 $( document ).ready(function() {
+
+
+  // Creates canvas 320 × 200 at 10, 50
+  var paper = Raphael("canvas", 400, 600);
+
 
 	function showSummary(){
 		$.ajax({
@@ -81,11 +85,6 @@ $( document ).ready(function() {
 		});
 
 
-		d3.select(".scoreboard").selectAll("p")
-			.data(email_data, function(d){return d.email;})
-			.enter().append("p")
-			.text(function(d){return d.email + " : " + d.faces;});
-
 
 	}
 
@@ -103,10 +102,20 @@ $( document ).ready(function() {
 <head>
 
 <body>
-	<h1>SmileTagger Scoreboard</h1>
-	<div class="scoreboard">here?</div>
-	<div id="chart"></div>
-
+	<div class="container">
+		<div class="row-fluid-banner">
+			<div class="span12" ><h1>SmileTagger Scoreboard</h1></div>
+		</div>
+		<div class="row-fluid-banner" >
+			<div class="span4" ><h3>Objects in Database: <span class="total_objects">4</span></h3></div>
+			<div class="span4" ><h3>Objects Tagged: <span class="total_tagged_objects">10</span></h3></div>
+		</div>
+		<div class="row-fluid-banner">
+			<div class="span12">
+				<div id="canvas" />
+			</div>
+		</div>
+	</div>
 
 
 </body>
