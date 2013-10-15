@@ -339,8 +339,14 @@ function faceTapped(x,y){
 
 		 }, 
 		 function (evt) {
+		 	console.log(evt);
+		 	console.log(paper);
 		 	console.log("dragover");
-		 	$("#debug").append("donedrag<BR>" + evt.offsetX + "<br>");
+		 	var px = paper.canvas.offsetLeft; // 70 90 20 
+		 	var py = paper.canvas.offsetTop; // 70 87 27
+		 	var x = evt.x;
+		 	var y = evt.y;
+		 	$("#debug").append(px +"," + py + " : " + x + " , " + y);
 
 			reInitialize=true;
 			console.log(evt);
