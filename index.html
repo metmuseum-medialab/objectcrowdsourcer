@@ -332,7 +332,7 @@ function faceTapped(x,y){
 		 },
 		 function(){
 
-		 	$("#debug").append("startdrag");
+		 	$("#debug").append("startdrag<BR>");
 			$(".facetag").css("border","none");
 			$("#faces"+index).css("border","2px solid black");
 			$("#faces"+index).css("border-radius","5px");
@@ -340,7 +340,7 @@ function faceTapped(x,y){
 		 }, 
 		 function (evt) {
 		 	console.log("dragover");
-		 	$("#debug").append("donedrag");
+		 	$("#debug").append("donedrag<BR>" + evt.offsetX + "<br>");
 
 			reInitialize=true;
 			console.log(evt);
@@ -351,18 +351,7 @@ function faceTapped(x,y){
 
 		  });
 	
-	circle.touchend(function (evt) {
-		 	console.log("touchover");
-		 	$("#debug").append("touchover");
 
-			reInitialize=true;
-			console.log(evt);
-			var newX = evt.offsetX;
-			var newY = evt.offsetY;
-			// update position in html, interal array, etc
-			setFacePos(index,newX, newY);
-
-		  });
 
 }
 
