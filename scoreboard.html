@@ -51,9 +51,14 @@ svg {
 <script language='javascript'>
 $( document ).ready(function() {
 
+	var canvas_width = 600;
+	var canvas_height = 400;
+	var bar_colors = ["pink", "lightblue"];
 
   // Creates canvas 320 × 200 at 10, 50
-  var paper = Raphael("canvas", 400, 600);
+  var paper = Raphael("canvas", canvas_width, canvas_height);
+
+
 
 
 	function showSummary(){
@@ -61,8 +66,8 @@ $( document ).ready(function() {
 			url : "/?action=getSummary",
 			contentType : 'application/json',
 	  		success : function(data, status){
-	  			console.log(data);
 	  			displaySummary(data);
+	  			setTimeout(showSummary, 5000);
 	  		},
 
 	  		error : function(jqXHR, status, message){
@@ -75,13 +80,52 @@ $( document ).ready(function() {
 
 
 	function displaySummary(data){
-		console.log("tring to display");
-		console.log(data.email_data);
+
+
+		$("#total_objects").text(data.total_objects.rows[0].value);
+		$("#total_tagged_objects").text(data.total_tagged_objects.rows[0].value);
 
 		var email_data = data.email_data.sort(function(a, b){return b.faces - a.faces});
 
+		var num_emails = email_data.length;
+		if(num_emails == 0){
+			return;
+		}
+		var item_height = canvas_height / num_emails;
+		var max_num = email_data[0].faces;
+		if(max_num == 0){
+			return;
+		}
+		var tick_size = canvas_width / max_num;
+
+		var cur_y = 0;
+
+
+		paper.clear();
+
 		$.each(email_data, function(index, value){
-			console.log(value);
+		//	console.log(value);
+			var num_faces = value.faces;
+			var email = value.email;
+
+			var rect_length = num_faces * tick_size;
+			var rect_height = item_height - 3;
+
+			var color = bar_colors[index % 2];
+
+			var rect = paper.rect(0, cur_y, rect_length, rect_height, item_height / 3);
+			rect.attr("fill", bar_colors[index % bar_colors.length]);
+			var email_text = paper.text(canvas_width / 2, cur_y + (item_height / 3), email);
+			var bbox = email_text.getBBox();
+			var text_w = bbox.width;
+			email_text.attr("x", (text_w /2 ) + 20);
+			email_text.attr("font-size", 12);
+
+			var num_text= paper.text(canvas_width / 2, cur_y + (item_height / 3), num_faces);
+			num_text.attr("font-size",24);
+
+			cur_y += item_height;
+
 		});
 
 
@@ -104,11 +148,11 @@ $( document ).ready(function() {
 <body>
 	<div class="container">
 		<div class="row-fluid-banner">
-			<div class="span12" ><h1>SmileTagger Scoreboard</h1></div>
-		</div>
-		<div class="row-fluid-banner" >
-			<div class="span4" ><h3>Objects in Database: <span class="total_objects">4</span></h3></div>
-			<div class="span4" ><h3>Objects Tagged: <span class="total_tagged_objects">10</span></h3></div>
+			<div class="span7" ><h1>SmileTagger Scoreboard</h1></div>
+			<div class="span4" valign="bottom" >
+Objects in Database: <span id="total_objects">4</span><BR>
+Objects Tagged: <span id="total_tagged_objects">10</span>
+			</div>
 		</div>
 		<div class="row-fluid-banner">
 			<div class="span12">
@@ -116,6 +160,6 @@ $( document ).ready(function() {
 			</div>
 		</div>
 	</div>
-
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
