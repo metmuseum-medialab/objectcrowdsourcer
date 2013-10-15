@@ -130,7 +130,7 @@ function nextClicked(){
 		console.log("shifting from queueu");
 		currentObject = objectQueue.shift();
 		console.log("sending data");
-		console.log(faces);
+		//console.log(faces);
 		sendTagData(currentObject, faces);
 	}
 
@@ -139,9 +139,9 @@ function nextClicked(){
 	// unset current faces
 
 	faces = [];
-	console.log("num was " + numFaces);
+	//console.log("num was " + numFaces);
 	numFaces = 0;
-	console.log("num now " + numFaces);
+	//console.log("num now " + numFaces);
 
 	updateSmileCount(0);
 	// clear faces div
@@ -167,9 +167,9 @@ function updateSmileCount(num){
 function sendTagData(currentObject, thefaces){
 		var newFaces = [];
 		var i = 0;
-		console.log(thefaces);
+//		console.log(thefaces);
 		$(thefaces).each(function(index, face){
-			console.log(face);
+//			console.log(face);
 			if(face != null){
 				newFaces[i] = face;
 				newFaces[i].center_pos.value[0]= face.center_pos.value[0] / currentObject.width;
@@ -177,7 +177,7 @@ function sendTagData(currentObject, thefaces){
 				i++;
 			}
 		});
-		console.log(newFaces);
+		//console.log(newFaces);
 
 		var data = {
 			objectId : currentObject.data._id,
@@ -185,7 +185,7 @@ function sendTagData(currentObject, thefaces){
 			faces : JSON.stringify(newFaces)
 		};
 		console.log("sending " + data.objectId);
-		console.log(data);
+		//console.log(data);
 		// send to server
 		var action="updateObjectFaces";
 		$.ajax({
@@ -194,7 +194,7 @@ function sendTagData(currentObject, thefaces){
 			contentType : 'application/json',
 	  		success : function(data, status){
 	  			console.log("success");
-	  			console.log(data);
+	  			//console.log(data);
 	  		},
 
 	  		error : function(jqXHR, status, message){
@@ -335,25 +335,23 @@ function faceTapped(x,y){
 			}
 		 },
 		 function(){
-
-		 	$("#debug").append("startdrag<BR>");
 			$(".facetag").css("border","none");
 			$("#faces"+index).css("border","2px solid black");
 			$("#faces"+index).css("border-radius","5px");
 
 		 }, 
 		 function (evt) {
-		 	console.log(evt);
-		 	console.log(paper);
-		 	console.log("dragover");
+//		 	console.log(evt);/
+//		 	console.log(paper);
+//		 	console.log("dragover");
 		 	var px = paper.canvas.offsetLeft; // 70 90 20 
 		 	var py = paper.canvas.offsetTop; // 70 87 27
 		 	var x = evt.x;
 		 	var y = evt.y;
-		 	$("#debug").append(px +"," + py + " : " + xx + " , " + yy);
+//		 	$("#debug").append(px +"," + py + " : " + xx + " , " + yy);
 
 			reInitialize=true;
-			console.log(evt);
+//			console.log(evt);
 //			var newX = evt.offsetX;
 //			var newY = evt.offsetY;
 			var newX = xx - px;
@@ -410,12 +408,12 @@ function faceTapped(x,y){
 		$("#facetags #"+id + " .deleteface").click(function(){
 			// remove from data
 			faces[index] = null;
-			console.log("removing fromdiv");
+//			console.log("removing fromdiv");
 			$("#facetags #" + id).remove();
-			console.log(faces);
-			console.log("num was " + numFaces);
+//			console.log(faces);
+//			console.log("num was " + numFaces);
 			numFaces--;
-			console.log("num now " + numFaces);
+//			console.log("num now " + numFaces);
 			updateSmileCount(numFaces);
 			updateClickForNext();
 		});
@@ -469,14 +467,14 @@ function faceTapped(x,y){
 
 
 function showSummaryData(){
-	console.log("gonna show summary");
+	//console.log("gonna show summary");
 	$.ajax({
   		url: "/?action=getSummary",
   		success : function(data, status){
   			if(!data || !data.total_objects){
   				return;
   			}
-  			console.log(data);
+  			//console.log(data);
   			var string = "total of " + data.total_objects.rows[0].value + " objects in db<BR>";
   			string += data.total_tagged_objects.rows[0].value +  " are tagged";
   			$("#summarydata").html(string);
