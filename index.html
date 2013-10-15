@@ -354,8 +354,10 @@ function faceTapped(x,y){
 
 			reInitialize=true;
 			console.log(evt);
-			var newX = evt.offsetX;
-			var newY = evt.offsetY;
+//			var newX = evt.offsetX;
+//			var newY = evt.offsetY;
+			var newX = x - px;
+			var newY = y - py;
 			// update position in html, interal array, etc
 			setFacePos(index,newX, newY);
 
