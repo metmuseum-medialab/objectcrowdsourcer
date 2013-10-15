@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>CrowdTagger - Smile Version</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/raphael-min.js"></script>
+<script type="text/javascript" src="js/d3.v3.min.js"></script>
+
+<script language='javascript'>
+$( document ).ready(function() {
+
+
+
+	function showSummary(){
+		$.ajax({
+			url : "/?action=getSummary",
+			contentType : 'application/json',
+	  		success : function(data, status){
+	  			console.log(data);
+	  			displaySummary(data);
+	  		},
+
+	  		error : function(jqXHR, status, message){
+	  			console.log("error ");
+	  			console.log(status);
+	  			console.log(message);
+	  		}
+		});		
+	}
+
+
+	function displaySummary(data){
+		console.log("tring to display");
+		console.log(data.email_data);
+		d3.select(".scoreboard").selectAll("p")
+			.data(data.email_data, function(d){return d.email;})
+			.enter().append("p")
+			.text(function(d){return d.email + " : " + d.faces;});
+	}
+
+	console.log("getting summary");
+
+	showSummary();
+
+
+
+
+
+
+
+});
+
+</script>
+
+<head>
+
+<body>
+	<h1>SmileTagger Scoreboard</h1>
+	<div class="scoreboard">here?</div>
+	<div id="chart"></div>
+
+
+
+</body>

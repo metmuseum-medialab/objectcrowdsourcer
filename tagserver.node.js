@@ -64,7 +64,7 @@ var db_name = "objecttags";
 
 var nano = require('nano')('http://localhost:5984');
 var db = nano.use(db_name);
-
+var $ = require("jquery");
 
 var port = 1337;
 if(process && process.env && process.env.NODE_ENV == "production"){
@@ -232,12 +232,45 @@ function getSummary(query, request, response){
   var allData = {};
   var contentType = "application/json";
   response.writeHead(200, {'Content-Type': contentType});
+
+
+  getTotalObjects(allData, response, maybeWriteSummary);
+  getTotalTaggedObjects(allData, response, maybeWriteSummary);
+  getObjectsPerEmail(allData, response, maybeWriteSummary);
+  getFacesPerEmail(allData, response, maybeWriteSummary);
+
+}
+
+function getTotalTaggedObjects(allData, response, callback){
+  db.view("objecttagger", "total_tagged_objects" , 
+  function(err, body){
+    if(err){
+      console.log("error getting summary");
+      console.log(err);
+      response.end(JSON.stringify({error: err}));
+      return;
+    }
+
+    var msg = "";
+    if(err){
+      console.log("error" + err);
+    }else{
+      console.log("getting total tagged objects");
+      allData.total_tagged_objects = body;
+      msg += "body: " + body;
+    }
+    callback(allData, response);
+  }); 
+}
+
+
+function getTotalObjects(allData, response, callback){
   db.view("objecttagger", "total_objects" , 
   function(err, body){
     if(err){
       console.log("error getting summary");
       console.log(err);
-      response.end("{}");
+      response.end(JSON.stringify({error: err}));
       return;
     }
 
@@ -246,34 +279,92 @@ function getSummary(query, request, response){
       console.log("error" + err);
     }else{
       console.log("getting total objects");
-      console.log(body);
       allData.total_objects = body;
       msg += "body: " + body;
     }
-    maybeWriteSummary(allData, response);
-  });
+    callback(allData, response);
+  }); 
+}
 
-  db.view("objecttagger", "total_tagged_objects" , 
+function getObjectsPerEmail(allData, response, callback){
+  db.view("objecttagger",  "images_tagged_per_email" , {group: true}  , 
   function(err, body){
+    if(err){
+      console.log("error getting summary");
+      console.log(err);
+      response.end(JSON.stringify({error: err}));
+      return;
+    }
+
     var msg = "";
     if(err){
       console.log("error" + err);
     }else{
-      console.log("getting total tagged objects");
-      console.log(body);
-      allData.total_tagged_objects = body;
+      console.log("getting num objects per_email");
+      allData.objects_per_email = body;
+      msg += "body: " + body;
     }
-    maybeWriteSummary(allData, response);
-  });
+    callback(allData, response);
+  }); 
+}
 
+function getFacesPerEmail(allData, response, callback){
+  db.view("objecttagger",  "faces_tagged_per_email" , {group: true}  , 
+  function(err, body){
+    if(err){
+      console.log("error getting summary");
+      console.log(err);
+      response.end(JSON.stringify({error: err}));
+      return;
+    }
 
+    var msg = "";
+    if(err){
+      console.log("error" + err);
+    }else{
+      console.log("getting num faces per_email");
+      allData.faces_per_email = body;
+      msg += "body: " + body;
+    }
+    callback(allData, response);
+  }); 
 }
 
 function maybeWriteSummary(allData, response){
-  console.log(allData);
-  if(allData.total_objects && allData.total_tagged_objects){
+  if(allData.total_objects && allData.total_tagged_objects && allData.faces_per_email && allData.objects_per_email){
+    // summarize in new way:
+    var summary = {};
+    summary.total_objects = allData.total_objects;
+    summary.total_tagged_objects = allData.total_tagged_objects;
+    var email_data = {};
+    $(allData.faces_per_email.rows).each(function(index, item){
+      var email = item.key;
+      if(email.trim() == ""){email = 'anonymous';}
+      var num = item.value;
+      email_data[email] = {faces :  num};
+    });
+    $(allData.faces_per_email.rows).each(function(index, item){
+      var email = item.key;
+      if(email.trim() == ""){email = 'anonymous';}
+      var num = item.value;
+      if(!email_data[email]){
+        email_data[email] = {};
+      }
+      email_data[email].objects =  num;
+    });
+
+    var email_array = [];
+    $.each(email_data, function(email, value){
+      var newObj = {email : email, 
+                    faces : value.faces,
+                    objects: value.objects};
+      email_array.push(newObj);
+    });
+
+    summary.email_data = email_array;
+
     console.log("gonna end");
-    response.end(JSON.stringify(allData));
+    response.end(JSON.stringify(summary));
   }else{
     console.log("still waiting");
   }
