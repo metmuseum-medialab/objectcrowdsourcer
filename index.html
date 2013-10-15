@@ -139,7 +139,10 @@ function nextClicked(){
 	// unset current faces
 
 	faces = [];
+	console.log("num was " + numFaces);
 	numFaces = 0;
+	console.log("num now " + numFaces);
+
 	updateSmileCount(0);
 	// clear faces div
 	$("#facetags").empty();
@@ -364,10 +367,14 @@ function faceTapped(x,y){
 		*/
 	var id = "faces"+ index;
 	var email = $("#emailentry").val();
+	var isnew = false;
 	if(!faces[index]){
+		isnew = true;
 		console.log("Adding face");
 		faces[index] = {};
+		console.log("num was " +numFaces);
 		numFaces++;
+		console.log("num now " +numFaces);
 		$("#facetags").append("<div id='"+id+"' class='facetag' style='margin-bottom: 3px;'><span style='border-radius: 5px; background: lightblue;  padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;'>smile at: <span class='x'>"+x+"</span>, <span class='y'>"+y+"</span></span><span class='email' style='display: none;'>"+email+"</span><span class='deleteface' style='float: right; background:plum; border-radius: 5px; padding-left: 3px; padding-right: 3px;'>delete</span></div>");
 		if(circle){
 			faces[index].circle = circle;
@@ -383,17 +390,20 @@ function faceTapped(x,y){
 	$(ypath).text(y);
 
 	faces[index].center_pos = { value : [x,y], user : email};
-
-	$("#facetags #"+id + " .deleteface").click(function(){
-		// remove from data
-		faces[index] = null;
-		console.log("removing fromdiv");
-		$("#facetags #" + id).remove();
-		console.log(faces);
-		numFaces--;
-		updateSmileCount(numFaces);
-		updateClickForNext();
-	});
+	if(isnew){
+		$("#facetags #"+id + " .deleteface").click(function(){
+			// remove from data
+			faces[index] = null;
+			console.log("removing fromdiv");
+			$("#facetags #" + id).remove();
+			console.log(faces);
+			console.log("num was " + numFaces);
+			numFaces--;
+			console.log("num now " + numFaces);
+			updateSmileCount(numFaces);
+			updateClickForNext();
+		});
+	}
 	updateClickForNext();
 	return $("#facetags #"+id + " .deleteface");
   }

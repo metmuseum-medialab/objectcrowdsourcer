@@ -4,14 +4,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+<style>
+
+@import url(../style.css?20120427);
+
+svg {
+  font: 10px sans-serif;
+}
+
+.bar rect {
+  fill: steelblue;
+}
+
+.bar:hover rect {
+  fill: brown;
+}
+
+.value {
+  fill: white;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path {
+  stroke: none;
+}
+
+.x.axis line {
+  stroke: #fff;
+  stroke-opacity: .8;
+}
+
+.y.axis path {
+  stroke: green;
+}
+
+</style>
+
+
 <script src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="js/raphael-min.js"></script>
 <script type="text/javascript" src="js/d3.v3.min.js"></script>
 
 <script language='javascript'>
 $( document ).ready(function() {
-
-
 
 	function showSummary(){
 		$.ajax({
@@ -34,18 +73,25 @@ $( document ).ready(function() {
 	function displaySummary(data){
 		console.log("tring to display");
 		console.log(data.email_data);
+
+		var email_data = data.email_data.sort(function(a, b){return b.faces - a.faces});
+
+		$.each(email_data, function(index, value){
+			console.log(value);
+		});
+
+
 		d3.select(".scoreboard").selectAll("p")
-			.data(data.email_data, function(d){return d.email;})
+			.data(email_data, function(d){return d.email;})
 			.enter().append("p")
 			.text(function(d){return d.email + " : " + d.faces;});
+
+
 	}
 
-	console.log("getting summary");
+
 
 	showSummary();
-
-
-
 
 
 
