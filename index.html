@@ -332,6 +332,7 @@ function faceTapped(x,y){
 		 },
 		 function(){
 
+		 	$("#debug").append("startdrag");
 			$(".facetag").css("border","none");
 			$("#faces"+index).css("border","2px solid black");
 			$("#faces"+index).css("border-radius","5px");
@@ -339,6 +340,8 @@ function faceTapped(x,y){
 		 }, 
 		 function (evt) {
 		 	console.log("dragover");
+		 	$("#debug").append("donedrag");
+
 			reInitialize=true;
 			console.log(evt);
 			var newX = evt.offsetX;
@@ -349,7 +352,9 @@ function faceTapped(x,y){
 		  });
 	
 	circle.touchend(function (evt) {
-		 	console.log("dragover");
+		 	console.log("touchover");
+		 	$("#debug").append("touchover");
+
 			reInitialize=true;
 			console.log(evt);
 			var newX = evt.offsetX;
@@ -503,7 +508,7 @@ function showSummaryData(){
 				<h3 id="smilecount">Smiles:</h3>
 				<div class="facetags" id="facetags">
 				</div>
-
+<div id="debug"></div>
 			</div>
 		</div>
 
