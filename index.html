@@ -307,10 +307,14 @@ function faceTapped(x,y){
 		circle.remove();
 		outerCircle.remove();
 	})
+		var xx;
+		var yy;
 
 	circle.drag(
 
 		function(dx,dy, x,y){
+			xx = x;
+			yy = y;
 			tAddX=dx-fDx;
 			tAddY=dy-fDy;
 			fDx=dx;
@@ -346,7 +350,7 @@ function faceTapped(x,y){
 		 	var py = paper.canvas.offsetTop; // 70 87 27
 		 	var x = evt.x;
 		 	var y = evt.y;
-		 	$("#debug").append(px +"," + py + " : " + x + " , " + y);
+		 	$("#debug").append(px +"," + py + " : " + xx + " , " + yy);
 
 			reInitialize=true;
 			console.log(evt);
