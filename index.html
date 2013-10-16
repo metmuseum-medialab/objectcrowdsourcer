@@ -215,8 +215,8 @@ function displayNextObject(){
 	}else{
 		objectQueue[0].paperimage.show();
 		objectQueue[0].paperimage.click(function(evt){
-			var x = evt.offsetX;
-			var y = evt.offsetY;
+            var x  = (evt.offsetX || evt.clientX - $(evt.target).offset().left);
+            var y  = (evt.offsetY || evt.clientY - $(evt.target).offset().top);
 			faceTapped(x,y);
 
 		});	
