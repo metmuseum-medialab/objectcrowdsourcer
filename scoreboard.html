@@ -81,9 +81,14 @@ $( document ).ready(function() {
 
 	function displaySummary(data){
 
+		
 
 		$("#total_objects").text(data.total_objects.rows[0].value);
 		$("#total_tagged_objects").text(data.total_tagged_objects.rows[0].value);
+
+		if(!data.email_data){
+			return;
+		}
 
 		var email_data = data.email_data.sort(function(a, b){return b.faces - a.faces});
 
