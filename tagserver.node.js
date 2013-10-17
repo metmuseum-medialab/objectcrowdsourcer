@@ -188,6 +188,7 @@ function get_unassigned_object(res){
       { field: "assigned_for_tagging", value: true }, 
       function(e,b) { 
         if(e){
+          console.log("*********************have to get another object!!!!!")
           get_unassigned_object(res);
         }else{
           res.end(JSON.stringify(object));
