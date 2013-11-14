@@ -59,6 +59,20 @@ var design = {
       "} " 
     },
 
+    "tagged_objects" : {
+
+      "map" : "function(doc){ "+
+//        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
+      " if(doc.tags && doc.tags.faces && doc.tags.faces[0] && doc.tags.faces[0].center_pos){ " +
+      "   ready = true; " +
+      " } else{ " + 
+      "   ready = false ;" +
+      " } " +
+      " emit(ready, doc); " + 
+      "} " 
+
+    },
+
     "images_tagged_per_email" : {
       "map" : " function(doc){  "+
           " if(doc.tags && doc.tags.faces && doc.tags.faces[0] && doc.tags.faces[0].center_pos){  "+
