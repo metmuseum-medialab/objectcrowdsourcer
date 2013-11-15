@@ -19,7 +19,7 @@ db.view("objecttagger", "tagged_objects", {keys: [true]} ,
       		return; 
     	}else{
 
-			console.log('{"total_rows":'+body.rows.length+',"offset":0,"rows":[');  		
+			console.log('{"total_rows":'+body.rows.length+',"offset":0,"docs":[');  		
     		//console.log(body);
     		$(body.rows).each(function(index, item){
     			delete item.value._rev;
