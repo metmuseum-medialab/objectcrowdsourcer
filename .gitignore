@@ -2,3 +2,5 @@
 node_modules/nano/.npmignore
 
 node_modules/
+
+couchdb-dump/couchdb-dump
