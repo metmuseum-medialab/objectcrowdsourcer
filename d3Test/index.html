@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+#scatterPlot{
+	width: 400px;
+	display: inline-block;
+}
+.bChart {
+  display: inline-block;
+  height: 151px;
+  margin-bottom: 20px;
+  width: 200px;
+}
+
+
+.foreground.bar {
+  fill: steelblue;
+  stroke-width: 0;
+}
+
+.bar{
+  stroke:black;
+  stroke-width: 0; 
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis  {
+  font: 10px sans-serif;
+}
+
+.brush .extent {
+  fill: steelblue;
+  fill-opacity: .125;
+}
+
+.brush .resize path {
+  fill: #eee;
+  stroke: #666;
+}
+
+
+</style>
+<body>
+
+<div id='scatterPlot'></div>
+
+<div class='bChart'></div>
+<div class='bChart'></div>
+
+<div>
+	<img id='artImage' style="height:500px">
+</div>
+
+</body>
+
+<script src="../js/d3.v3.js"></script>
+<script src="../js/crossfilter.js"></script>
+
+<script src="drawScatterPlot.js"></script>
+<script src="barChart.js"></script>
+
+<script>
+d3.json('../dumpTagged.json', function(error, rawData){
+  data = rawData.docs;
+  drawScatterPlot();
+
+  artCF = crossfilter(data);
+
+  numSmile = artCF.dimension(function(d){ return d.tags.faces.length; })
+  numSmiles = numSmile.group();
+
+  //find max dimension size
+  size = artCF.dimension(function(d){
+	  var str = d.dimensions;
+	  str = typeof str == 'object' ? str.join(' ') : str;
+	  str = str ? str : '';
+	  var matches = str.match(/\d+(\.\d*)?|\.\d+/g)
+	  matches = matches ? matches : [0];
+	  return d3.max(matches.map(function(e){
+	      if (isNaN(e) || e === null){ return 0};
+	      return [4,7,8,16].indexOf(+e) == -1 ? +e : 0; 
+	  }));	
+	});
+	sizes = size.group();
+
+	var bCharts = [
+		barChart()
+			.dimension(numSmile)
+			.group(numSmiles)
+			.x(d3.scale.linear()
+				.domain([1, 5])
+				.rangeRound([0, 190]))
+			.barWidth(10),
+
+		barChart()
+			.dimension(size)
+			.group(sizes)
+			.x(d3.scale.linear()
+				.domain([0, 500])
+				//.domain(d3.extent(sizes.all().map(function(d){ return d.key; })))
+				.rangeRound([0, 190]))
+			.barWidth(10)
+	];
+
+	function render(method){
+		d3.select(this).call(method);
+	}
+
+	renderAll = function(){
+		bChart.each(render);
+	}
+
+	var bChart = d3.selectAll(".bChart")
+			.data(bCharts)
+			.each(function(chart){ chart.on("brush", renderAll).on("brushend", renderAll) });
+
+	renderAll();
+});
+</script>
+
