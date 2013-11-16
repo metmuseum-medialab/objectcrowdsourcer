@@ -46,6 +46,7 @@ async.eachSeries(taggedData.docs, function(item, callback){
 
 	item.numTags = item.tags.faces.length;
 	item.whatString = JSON.stringify(item.what);
+	item.collPage = item.links.source.href;
 
 
 	simpleData.push(item);
@@ -64,7 +65,7 @@ async.eachSeries(taggedData.docs, function(item, callback){
 
 
 		json2csv({data: simpleData, 
-				fields :  ['id','accession number','title','who', 'image', 'when','date', 'numTags', 'whatString']
+				fields :  ['id','accession number','title','who', 'image', 'when','date', 'numTags', 'whatString','collPage', 'gallery-id']
 				}, 
 				function(err, csv) {
 					if (err){ 
