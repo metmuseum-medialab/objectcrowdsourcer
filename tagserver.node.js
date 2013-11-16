@@ -136,11 +136,11 @@ function sendFile(path, query, res){
       if(err){
         console.log("file read error");
         console.log(err);
-        res.writeHead(404, {'Content-Type': +contentType});
+        res.writeHead(404, {'Content-Type': contentType});
         //indexhtml = data;
         res.end(data);
       }else{
-        res.writeHead(200, {'Content-Type': +contentType});
+        res.writeHead(200, {'Content-Type': contentType});
         console.log("writing file " + path);
      //   console.log(data);
         //dataCache[path] = data;
