@@ -11,7 +11,7 @@ var im = gm.subClass({ imageMagick: true });
 
 var path = require("path");
 
-var cacheBase= path.resolve("../imageCache/") + "/";
+var cacheBase= path.resolve("../imageCache_480/") + "/";
 
 
 var fs = require("../node_modules/node-fs/lib/fs");
@@ -49,7 +49,7 @@ async.eachSeries(taggedData.docs, function(item, callback){
 
 	var imagePath = image.replace("http://images.metmuseum.org/", "");
 
-	imagePath = "imageCache/" +imagePath;
+	imagePath = "imageCache_480/" +imagePath;
 
 	string += "<td>";
 
