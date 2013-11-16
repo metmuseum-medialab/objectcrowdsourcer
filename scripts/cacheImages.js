@@ -32,7 +32,7 @@ var numWritten = 0;
 var numLoops = 0;
 var numInQueue = 0;
 
-async.eachLimit(taggedData.docs, 50, function(item, callback){
+async.eachLimit(taggedData.docs, 20, function(item, callback){
 	numLoops++;
 	numInQueue++;
 	console.log("################################# " + numInQueue);
@@ -75,7 +75,8 @@ async.eachLimit(taggedData.docs, 50, function(item, callback){
 
 	console.log("testing for " + imageCachePath);
 
-	if(!fs.existsSync(imageCachePath)){
+//	if(!fs.existsSync(imageCachePath)){
+	if(true){
 		console.log("writing " + imageUrl +  " to " + imageCachePath);
 		console.log(minItem);
 		numInQueue++;
@@ -116,7 +117,7 @@ async.eachLimit(taggedData.docs, 50, function(item, callback){
 
 		console.log(minData);
 
-		fs.writeFile(minimalFile, JSON.stringify(minData, null, "  "));
+	//	fs.writeFile(minimalFile, JSON.stringify(minData, null, "  "));
 
 	}
 });
