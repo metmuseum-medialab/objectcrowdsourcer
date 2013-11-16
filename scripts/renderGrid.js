@@ -27,7 +27,7 @@ var taggedData = require(filename);
 
 var index = 0;
 
-var columns = 5;
+var columns = 8;
 
 var last = false;
 
