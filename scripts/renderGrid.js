@@ -13,9 +13,15 @@ var path = require("path");
 
 var cacheBase= path.resolve("../imageCache/") + "/";
 
-var gridString = "";
 
-gridString += "<html><head></head><body><Table>"
+var fs = require("../node_modules/node-fs/lib/fs");
+
+
+var gridstring = "";
+
+var filename = "../dumpTagged.json";
+
+gridstring += "<html><head></head><body><Table border=1>"
 
 var taggedData = require(filename);
 
@@ -38,18 +44,23 @@ async.eachSeries(taggedData.docs, function(item, callback){
 
 
 
-	var image = item.imageCache;
+	var image = item.image;
+
+
+	var imagePath = image.replace("http://images.metmuseum.org/", "");
+
+	imagePath = "imageCache/" +imagePath;
 
 	string += "<td>";
 
 
-	string += image;
+	string += "<img src='"+imagePath+"' width=128 />";
 
 	string += "</td>\n";
 
-
+	last = false;
 	if(index % columns == 0){
-
+		last= true;
 		string += "</tr>\n";
 	}
 
@@ -64,10 +75,19 @@ async.eachSeries(taggedData.docs, function(item, callback){
 		console.log("was error"); 
 		console.log(err);
 	}else{
-		console.log("done " + numLoops);
+		console.log("done " );
 
+		if (!last){
+			gridstring += "</tr>";
+		}
 
 		gridstring += "</table>\n</html>";
+
+		fs.writeFile('../grid.html', gridstring, function(err) {
+			if (err) throw err;
+		   		console.log('file saved');
+			}
+		);
 
 	}
 });
