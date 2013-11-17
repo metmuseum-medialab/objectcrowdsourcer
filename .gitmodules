@@ -1,0 +1,3 @@
+[submodule "smiler"]
+	path = smiler
+	url = git://github.com/camb416/smiler.git
