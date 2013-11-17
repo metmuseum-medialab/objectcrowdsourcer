@@ -12,6 +12,16 @@
   margin-bottom: 20px;
   width: 200px;
 }
+.title{
+  text-align: left;
+  margin-left: 10px;
+  font-weight: bold;
+}
+.reset {
+  padding-left: 1em;
+  font-size: smaller;
+  color: #ccc;
+}
 
 
 .foreground.bar {
@@ -21,22 +31,10 @@
 .background.bar {
   fill: #ccc;
 }
-
 .bar{
   stroke:black;
   stroke-width: 0; 
 }
-
-.axis path, .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.axis  {
-  font: 10px sans-serif;
-}
-
 .brush .extent {
   fill: steelblue;
   fill-opacity: .125;
@@ -48,12 +46,26 @@
 }
 
 
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.axis  {
+  font: 10px sans-serif;
+}
+
+
 </style>
 <body>
 
-<div id='scatterPlot'></div>
+<div id='scatterPlot'>
+	<div class="title">Smiles Position</div>
+</div>
 
-<div class='bChart'>Num Smiles</div>
+<div class='bChart'>
+	<div class="title">Number of Smiles</div>
+</div>
 <div class='bChart'>Max Dimension (in)</div>
 
 <div>
@@ -148,6 +160,12 @@ d3.json('../dumpTagged.json', function(error, rawData){
 			.each(function(chart){ chart.on("brush", renderAll).on("brushend", renderAll) });
 
 	renderAll();
+
+	window.breset = function(i){
+		bCharts[i].filter(null);
+		//zoomRender = true;
+		renderAll();
+	}
 });
 </script>
 
