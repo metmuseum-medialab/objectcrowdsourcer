@@ -3,7 +3,7 @@ FaceMetMuseum app
 Very much work in progress!
 
 
-![Screenshot](https://raw.github.com/eighteight/Objectify/master/FaceMetMuseum.png)
+![Screenshot](https://raw.github.com/donundeen/objectcrowdsourcer/master/Nov%2016%20Meetup/eight/FaceMetMuseum/FaceMetMuseum.png)
 
 ##Compability
 This app as been written using openFrameworks (0.8.4) and ofxFaceTracker plugin
