@@ -6,7 +6,7 @@ using namespace cv;
 
 void FaceMetMuseumApp::setupJson(){
     
-    std::string dir = OBJECT_CROUD_SOURCER_DIR;
+    std::string dir = OBJECT_CROWD_SOURCER_DIR;
 
 	// Now parse the JSON
 	bool parsingSuccessful = result.open(dir+"taggedMin.json");

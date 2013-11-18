@@ -25,7 +25,7 @@
 #include "ofxFaceTracker.h"
 #include "ofxOsc.h"
 
-#define OBJECT_CROUD_SOURCER_DIR "/Users/eight/repos/objectcrowdsourcer/"
+#define OBJECT_CROWD_SOURCER_DIR "/Users/eight/repos/objectcrowdsourcer/"
 
 class FaceMetMuseumApp : public ofBaseApp {
 public:
