@@ -42,7 +42,7 @@ var design = {
       " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || !doc.tags.faces)){ " +
       "   ready = true; " +
       " } else{ " + 
-      "   ready = false " +
+      "   ready = false ;" +
       " } " +
       " emit(ready, doc); " + 
       "} " 
@@ -53,9 +53,19 @@ var design = {
       " if(doc.assigned_for_tagging){ " +
       "   ready = true; " +
       " } else{ " + 
-      "   ready = false " +
+      "   ready = false ;" +
       " } " +
       " emit(ready, doc); " + 
+      "} " 
+    },
+    "objects_by_who" : {
+      "map" : "function(doc){ "+
+//        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
+      " var who = ''; " + 
+      " if(doc.who){ " +
+      "   who = doc.who; " +
+      "   emit(who, doc); " + 
+      " } " +
       "} " 
     },
 
