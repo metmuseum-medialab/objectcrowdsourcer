@@ -66,8 +66,47 @@ var design = {
       "   who = doc.who; " +
       "   emit(who, doc); " + 
       " } " +
-      "} " 
+      "} " ,
+      "reduce" : "_count" 
     },
+
+    "num_objects_by_who" : {
+      "map" : "function(doc){ "+
+//        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
+      " var who = ''; " + 
+      " if(doc.who){ " +
+      "   who = doc.who; " +
+      "   emit(who, doc); " + 
+      " } " +
+      "} ",
+      "reduce" : "_count" 
+    },    
+
+    "rand_objects_by_who" : {
+      "map" : "function(doc){ "+
+//        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
+      " var who = ''; " + 
+      " if(doc.who){ " +
+      "   who = doc.who; " +
+      "   emit([who, Math.random()], doc); " + 
+      " } " +
+      "} " ,
+      "reduce" : "_count" 
+ 
+    },
+
+    "rand_objects" : {
+      "map" : "function(doc){ "+
+//        " if((!doc.assigned_for_tagging) && (!doc.tags || !doc.tags.faces || doc.tags.faces.length < 2)){ " +
+      " var who = ''; " + 
+      " if(doc.who){ " +
+      "   who = doc.who; " +
+      "   emit(Math.random(), doc); " + 
+      " } " +
+      "} " ,
+      "reduce" : "_count" 
+
+    },    
 
     "tagged_objects" : {
 
@@ -104,6 +143,7 @@ var design = {
           " } " ,
       "reduce" : "_count" 
     },
+
 
 
     "total_objects" : {
